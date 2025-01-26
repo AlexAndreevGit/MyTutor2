@@ -1,0 +1,41 @@
+
+#Set properties in Sprong
+spring:
+  application:
+    name: demo2
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/MyTutorProject2?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
+    username: root
+    password: "!VarnaVarna35!"
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 5MB
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  jpa:
+    # Choose either MySQL 8 or MySQL 5 below
+    # For MySQL 8
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+#
+#    #For MySQL 5
+#    #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+#  The value update instructs Hibernate to automatically update the database schema when the application starts.
+    hibernate:
+      ddl-auto: update
+
+#  disables Hibernate's Open Session in View pattern to close the persistence context earlier, resulting in better resource management and enforcing best practices for data access.
+    open-in-view: false
+
+# is a developer-focused feature for better readability of SQL. SQL statements formated undereachother and not in a single line
+    properties:
+      hibernate:
+        format_sql: true
+
+#      ensures that data source initialization is delayed until the application context is fully prepared.
+    defer-datasource-initialization: true
+

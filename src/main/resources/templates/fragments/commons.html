@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MyTutor</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+</head>
+
+<body>
+
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav">
+            <li class="nav-item mr-2">
+                <a class="btn btn-primary" href="/home">Home</a>
+            </li>
+
+            <!--            SpringSecurity_5        sec:authorize="isAuthenticated()  if the user is loged in, then show this button  -->
+            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
+                <a class="btn btn-primary" href="/tutoriels/add">Add Tutoring Offer</a>
+            </li>
+
+
+            <!--            TODO security update so you can push the button only if loged in-->
+                        <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
+                            <a class="btn btn-primary" href="/info">Tutoring Offers Informatics</a>
+                        </li>
+
+<!--            <li class="nav-item mr-2">-->
+<!--                <a class="btn btn-primary" href="/info">Tutoring Offers Informatics</a>-->
+<!--            </li>-->
+
+            <!--            TODO security update so you can push the button only if loged in-->
+                        <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
+                            <a class="btn btn-primary" href="/math">Tutoring Offers Mathematics</a>
+                        </li>
+
+<!--            <li class="nav-item mr-2">-->
+<!--                <a class="btn btn-primary" href="/math">Tutoring Offers Mathematics</a>-->
+<!--            </li>-->
+
+            <!--            TODO security update so you can push the button only if loged in-->
+                        <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
+                            <a class="btn btn-primary" href="/data">Tutoring Offers Datascience</a>
+                        </li>
+
+<!--            <li class="nav-item mr-2" >-->
+<!--                <a class="btn btn-primary" href="/data">Tutoring Offers Datascience</a>-->
+<!--            </li>-->
+
+
+<!--            &lt;!&ndash;            SpringSecurity_6        sec:authorize="hasRole('ADMIN')"  if the user is administrator, then show this button  &ndash;&gt;-->
+            <li class="nav-item mr-2" sec:authorize="hasRole('ADMIN')">
+                <a class="btn btn-primary" href="/admin/statistics">Statistic</a>
+            </li>
+
+<!--            TODO Sicherheit href="/admin/statistics"-->
+            <!--            SpringSecurity_6        sec:authorize="hasRole('ADMIN')"  if the user is administrator, then show this button  -->
+            <li class="nav-item mr-2" >
+                <a class="btn btn-primary" href="/statistics">Statistic</a>
+            </li>
+
+            <li class="nav-item mr-2" sec:authorize="!isAuthenticated()">
+                <a class="btn btn-primary" href="/users/login">Login</a>
+            </li>
+
+            <!--            TODO Sicherheit -->
+            <li class="nav-item mr-2" sec:authorize="!isAuthenticated()">
+                <a class="btn btn-primary" href="/users/register">Register</a>
+            </li>
+
+<!--            <li class="nav-item mr-2" >-->
+<!--                <a class="btn btn-primary" href="/users/register">Register</a>-->
+<!--            </li>-->
+
+            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
+                <a class="btn btn-primary" href="/users/about-us">About us</a>
+            </li>
+
+            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
+                <a class="btn btn-primary" href="/users/my-information">My Information</a>
+            </li>
+
+            <li class="nav-item " sec:authorize="isAuthenticated()">
+                <form th:method="post"
+                      th:action="@{/users/logout}">
+                    <input class="btn btn-primary" type="submit" value="Logout"/>
+                </form>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+<footer class="footer bg-transparent ">
+    <div class="container-fluid text-left h5 text-primary fixed-bottom">
+        Be better. Learn faster!
+    </div>
+</footer>
+
+</body>
+</html>
