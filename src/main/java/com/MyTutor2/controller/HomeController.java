@@ -21,9 +21,9 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String index(@AuthenticationPrincipal UserDetails userDetails) {                      //TODO AutetificationPricipal
+    public String index(@AuthenticationPrincipal UserDetails userDetails) {
 
-        if (userDetails == null) {        //is the user is not logged in then we won't have userDetails
+        if (userDetails == null) {
             return "index";
         }
 
@@ -33,11 +33,14 @@ public class HomeController {
 
 
     @GetMapping("/info")
-    public String informaticsOffers(Model model) {                      //TODO AutetificationPricipal
+    public String informaticsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 
-        //TODO if user not loged in then show index
+        if (userDetails == null) {   //
+            return "index";
+        }
 
         List<TutorialViewDTO> informaticsTutorialsAsView = tutoringService.findAllByCategoryID(2L);
+
         model.addAttribute("informaticsTutorialsAsView", informaticsTutorialsAsView);
 
         return "homeInformatics";
@@ -45,9 +48,11 @@ public class HomeController {
     }
 
     @GetMapping("/math")
-    public String mathematicsOffers(Model model) {                      //TODO AutetificationPricipal
+    public String mathematicsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 
-        //TODO if user not loged in then show index
+        if (userDetails == null) {   //
+            return "index";
+        }
 
         List<TutorialViewDTO> mathematicsTutorialsAsView = tutoringService.findAllByCategoryID(1L);
         model.addAttribute("mathematicsTutorialsAsView", mathematicsTutorialsAsView);
@@ -57,9 +62,11 @@ public class HomeController {
     }
 
     @GetMapping("/data")
-    public String datascienceOffers(Model model) {                      //TODO AutetificationPricipal
+    public String datascienceOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 
-        //TODO if user not loged in then show index
+        if (userDetails == null) {
+            return "index";
+        }
 
         List<TutorialViewDTO> datascienceTutorialsAsView = tutoringService.findAllByCategoryID(3L);
         model.addAttribute("datascienceTutorialsAsView", datascienceTutorialsAsView);
@@ -67,7 +74,6 @@ public class HomeController {
         return "homeDatascience";
 
     }
-
 
 
     @GetMapping("/home")
