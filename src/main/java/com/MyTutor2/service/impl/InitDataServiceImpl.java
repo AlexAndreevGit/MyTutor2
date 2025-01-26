@@ -51,14 +51,11 @@ public class InitDataServiceImpl implements InitDataService {
             userRoleRepository.save(userRoleEntityAdmin);
 
             // ----- Users in the Database -----
-
             User admin = new User("admin1", passwordEncoder.encode("12345"), "admin1@gmail.com");
-
             List<UserRoleEntity> listAdmin = new ArrayList<>();
             listAdmin.add(userRoleEntityUser);
             listAdmin.add(userRoleEntityAdmin);
             admin.setRoles(listAdmin);
-
             userRepository.save(admin);
 
             User user1 = new User("user1", passwordEncoder.encode("12345"), "u1@gmail.com");
@@ -67,11 +64,17 @@ public class InitDataServiceImpl implements InitDataService {
             user1.setRoles(list);
             userRepository.save(user1);
 
-            //TODO security create role, add it to a list, add the list to the user
-            userRepository.save(new User("user2", passwordEncoder.encode("12345"), "u2@gmail.com"));
+            User user2 = new User("user2", passwordEncoder.encode("12345"), "u2@gmail.com");
+            List<UserRoleEntity> listUser2 = new ArrayList<>();
+            listUser2.add(userRoleEntityUser);
+            user2.setRoles(listUser2);
+            userRepository.save(user2);
 
-            //TODO security create role, add it to a list, add the list to the user
-            userRepository.save(new User("user3", passwordEncoder.encode("12345"), "u3@gmail.com"));
+            User user3 = new User("user3", passwordEncoder.encode("12345"), "u3@gmail.com");
+            List<UserRoleEntity> listUser3 = new ArrayList<>();
+            listUser3.add(userRoleEntityUser);
+            user3.setRoles(listUser3);
+            userRepository.save(user3);
 
 
             // get the categories from the database
