@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+
+<body>
+
+<header th:replace="fragments/commons::nav"></header>
+
+<main>
+    <div class="container bg-blur px-4 px-lg-5">
+
+        <div class="row gx-4 gx-lg-5 align-items-center my-5">
+            <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://www.mystipendium.de/sites/default/files/styles/width_1003/public/images/bewerbung/nachhilfe_geben.jpg?itok=DntH9A84" alt="..."></div>
+            <div class="col-lg-5">
+                <h1 class="font-weight-light">MyTutor</h1>
+                <p>MyTutor is a project with the purpose of connecting students in need of a tutoring to another students ready to offer there tutoring sculls.</p>
+                <a class="btn btn-primary" th:href="@{/}">Find your tutor now!</a>
+            </div>
+        </div>
+
+        <div class="card text-white bg-secondary my-5 py-4 text-center">
+            <div class="card-body"><p class="text-white m-0">We offer connection in the fields of mathematics, informatics and data science.</p></div>
+        </div>
+
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title text-dark">Mathematics</h2>
+                        <p class="card-text text-dark">Mathematics is the science of number, quantity, and space, which can be applied to patterns, structures, and changes in the physical world through logical reasoning and quantitative calculations.</p>
+                    </div>
+                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://en.wikipedia.org/wiki/Mathematics#:~:text=Mathematics%20is%20an%20area%20of,and%20quantities%20and%20their%20changes.">More Info</a></div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title text-dark">Informatics</h2>
+                        <p class="card-text text-dark">Informatics is the interdisciplinary study of information processing, management, and dissemination, encompassing the design, implementation, and evaluation of computational systems and their impact on society.</p>
+                    </div>
+                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://en.wikipedia.org/wiki/Informatics">More Info</a></div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title text-dark">Data Science</h2>
+                        <p class="card-text text-dark">Data science is the multidisciplinary field that combines statistical analysis, machine learning, and domain expertise to extract insights and knowledge from structured and unstructured data.</p>
+                    </div>
+                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://en.wikipedia.org/wiki/Data_science">More Info</a></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+</body>
+
+
+
+</html>

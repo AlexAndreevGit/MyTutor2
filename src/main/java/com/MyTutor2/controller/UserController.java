@@ -61,5 +61,10 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/about-us")
+    public String aboutUs(){
+        return "about-us";
+    }
+
 
 }
