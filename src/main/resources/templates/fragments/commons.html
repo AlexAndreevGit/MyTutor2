@@ -28,47 +28,22 @@
                 <a class="btn btn-primary" href="/tutoriels/add">Add Tutoring Offer</a>
             </li>
 
-
-            <!--            TODO security update so you can push the button only if loged in-->
-                        <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
-                            <a class="btn btn-primary" href="/info">Tutoring Offers Informatics</a>
-                        </li>
-
-<!--            <li class="nav-item mr-2">-->
-<!--                <a class="btn btn-primary" href="/info">Tutoring Offers Informatics</a>-->
-<!--            </li>-->
-
-            <!--            TODO security update so you can push the button only if loged in-->
-                        <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
-                            <a class="btn btn-primary" href="/math">Tutoring Offers Mathematics</a>
-                        </li>
-
-<!--            <li class="nav-item mr-2">-->
-<!--                <a class="btn btn-primary" href="/math">Tutoring Offers Mathematics</a>-->
-<!--            </li>-->
-
-            <!--            TODO security update so you can push the button only if loged in-->
-                        <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
-                            <a class="btn btn-primary" href="/data">Tutoring Offers Datascience</a>
-                        </li>
-
-<!--            <li class="nav-item mr-2" >-->
-<!--                <a class="btn btn-primary" href="/data">Tutoring Offers Datascience</a>-->
-<!--            </li>-->
-
-
-            <!--            SpringSecurity_6        sec:authorize="hasRole('ADMIN')"  if the user is administrator, then show this button  -->
-<!--            <li class="nav-item mr-2" sec:authorize="hasRole('ADMIN')">-->
-<!--                <a class="btn btn-primary" href="/admin/statistics">Statistic</a>-->
-<!--            </li>-->
-            <li class="nav-item mr-2" sec:authorize="hasRole('ADMIN')">
-                <a class="btn btn-primary" href="/admin/statistics">Statistic</a>
+            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
+                <a class="btn btn-primary" href="/info">Tutoring Offers Informatics</a>
             </li>
 
-<!--            TODO Sicherheit href="/admin/statistics"-->
+            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
+                <a class="btn btn-primary" href="/math">Tutoring Offers Mathematics</a>
+            </li>
+
+            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
+                <a class="btn btn-primary" href="/data">Tutoring Offers Datascience</a>
+            </li>
+
+
             <!--            SpringSecurity_6        sec:authorize="hasRole('ADMIN')"  if the user is administrator, then show this button  -->
-            <li class="nav-item mr-2" >
-                <a class="btn btn-primary" href="/statistics">Statistic</a>
+            <li class="nav-item mr-2" sec:authorize="hasRole('ADMIN')">
+                <a class="btn btn-primary" href="/admin/statistics">Statistic</a>
             </li>
 
             <li class="nav-item mr-2" sec:authorize="!isAuthenticated()">
@@ -79,10 +54,6 @@
             <li class="nav-item mr-2" sec:authorize="!isAuthenticated()">
                 <a class="btn btn-primary" href="/users/register">Register</a>
             </li>
-
-<!--            <li class="nav-item mr-2" >-->
-<!--                <a class="btn btn-primary" href="/users/register">Register</a>-->
-<!--            </li>-->
 
             <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
                 <a class="btn btn-primary" href="/users/about-us">About us</a>
