@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class BaseEntity {        //TODO make abstract
+public abstract class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
