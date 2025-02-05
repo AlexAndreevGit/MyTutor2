@@ -20,7 +20,7 @@ public class User extends BaseEntity {
     private String email;
 
 
-//TODO
+//TODO better understand
 
     //SpringSecurity_10 list of all roles that the user has. If the user has the admin role then he is an administrator
     @ManyToMany(fetch = FetchType.EAGER)//@ManyToMany is "lasy" by default. We change it to "eager" so they are fetch all at once
