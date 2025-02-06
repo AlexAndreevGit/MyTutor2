@@ -2,7 +2,7 @@ package com.MyTutor2.config;
 
 import com.MyTutor2.repo.UserRepository;
 
-import com.MyTutor2.service.impl.MyTutorUserDetailsService;
+import com.MyTutor2.service.impl.UserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,14 +51,10 @@ public class SecurityConfig {
     //SpringSecurity_3 -> we are exposing "MyTutorUserDetailsService" as a bean
     //SpringSecurity_4 -> By this library(springsecurity6) we get additional extras that we don't have to implement ourselves
     @Bean
-    public MyTutorUserDetailsService userDetailsService(UserRepository userRepository){
-        return new MyTutorUserDetailsService(userRepository);  //we translate the users to representation which spring security understands
+    public UserDetailsService userDetailsService(UserRepository userRepository){
+        return new UserDetailsService(userRepository);  //we translate the users to representation which spring security understands
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return Pbkdf2PasswordEncoder
-                .defaultsForSpringSecurity_v5_8();
-    }
+
 
 }

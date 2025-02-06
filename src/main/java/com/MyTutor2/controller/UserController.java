@@ -1,26 +1,40 @@
 package com.MyTutor2.controller;
 
+import com.MyTutor2.model.DTOs.TutorialViewDTO;
 import com.MyTutor2.model.DTOs.UserLogInDTO;
 import com.MyTutor2.model.DTOs.UserRegisterDTO;
+import com.MyTutor2.model.entity.User;
 import com.MyTutor2.repo.UserRepository;
+import com.MyTutor2.service.ExRateService;
+import com.MyTutor2.service.TutoringService;
 import com.MyTutor2.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.List;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
 
     private UserService userService;
+    private UserRepository userRepository;
+    private TutoringService tutoringService;
+    private ExRateService exRateService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRepository userRepository, TutoringService tutoringService, ExRateService exRateService) {
         this.userService = userService;
+        this.userRepository = userRepository;
+        this.tutoringService = tutoringService;
+        this.exRateService = exRateService;
     }
 
     @ModelAttribute("userRegisterDTO")
@@ -28,7 +42,7 @@ public class UserController {
         return new UserRegisterDTO();
     }
 
-    @GetMapping("/register")  //TODO try @RequestMapping
+    @GetMapping("/register")
     public String register(){
         return "register";
     }
@@ -64,6 +78,37 @@ public class UserController {
     @GetMapping("/about-us")
     public String aboutUs(){
         return "about-us";
+    }
+
+    @RequestMapping(value = "/my-information", method = RequestMethod.GET)
+    public String myInformation(@AuthenticationPrincipal UserDetails userDetails, Model model){
+
+        User logedInUser= userRepository.findByUsername(userDetails.getUsername()).orElse(null);
+
+        List<TutorialViewDTO> submittedByMeTutorialsAsView = tutoringService.findAllTutoringOffersByUserName(logedInUser.getId());
+
+        double averagePriceBGN = submittedByMeTutorialsAsView.stream()
+                .mapToDouble(TutorialViewDTO::getPrice)
+                .average()
+                .orElse(0.0);
+
+
+        BigDecimal averagePriceEUR = exRateService.convert("BGN","EUR",BigDecimal.valueOf(averagePriceBGN));
+
+        model.addAttribute("userName",logedInUser.getName());
+        model.addAttribute("userEmail",logedInUser.getEmail());
+        model.addAttribute("numberOfClasses",submittedByMeTutorialsAsView.size());
+        model.addAttribute("submittedByMeTutorialsAsView",submittedByMeTutorialsAsView);
+
+        DecimalFormat df = new DecimalFormat("#.00");
+
+        model.addAttribute("averagePriceBGN", df.format(averagePriceBGN));
+        model.addAttribute("averagePriceEUR", df.format(averagePriceEUR));
+
+
+
+        return "my-information";
+
     }
 
 

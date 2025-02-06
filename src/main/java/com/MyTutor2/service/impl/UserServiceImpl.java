@@ -7,6 +7,8 @@ import com.MyTutor2.repo.UserRepository;
 import com.MyTutor2.repo.UserRoleRepository;
 import com.MyTutor2.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ public class UserServiceImpl implements UserService {
     private ModelMapper modelMapper;
     private PasswordEncoder passwordEncoder;
     private UserRoleRepository userRoleRepository;
+
+    private final Logger LOGGER = LoggerFactory.getLogger(ExRateServiceImpl.class);
 
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
@@ -40,6 +44,8 @@ public class UserServiceImpl implements UserService {
         user.setRoles(userRoles);
 
         userRepository.save(user);
+
+        LOGGER.info("A new user with the name {} was created.",user.getName());
 
 
     }
