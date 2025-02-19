@@ -26,8 +26,6 @@ public class InitDataServiceImpl implements InitDataService {
     private UserRoleRepository userRoleRepository;
     private final PasswordEncoder passwordEncoder;
 
-    // private final PasswordEncoder passwordEncoder;  TODO security add paswordencoder when starting to work with spring security
-
 
     public InitDataServiceImpl(UserRepository userRepository, CategoryRepository categoryRepository, TutoringRepository tutoringRepository, UserRoleRepository userRoleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -41,7 +39,7 @@ public class InitDataServiceImpl implements InitDataService {
     public void initData() {
 
 
-        if (userRepository.count() == 0) {          //TODO make better
+        if (userRepository.count() == 0) {
 
             // ----- User roles in the Database -----
             UserRoleEntity userRoleEntityUser = new UserRoleEntity(UserRoleEnum.USER);
