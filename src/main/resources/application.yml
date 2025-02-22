@@ -39,3 +39,12 @@ spring:
 #      ensures that data source initialization is delayed until the application context is fully prepared.
     defer-datasource-initialization: true
 
+  #ExchangeRates_Step_1 -> Settings/Configuration to connect to the REST API
+  #ExchangeRates_Step_2 -> configure FOREX_API_KEY under environment variables
+forex: #creating a Section
+  api:
+    key: ${FOREX_API_KEY:}   # the key is my unique ID that I got after the registration. I have to pay if I wat it after 1000 times .The keys are information that should not be in the code
+    url: "https://openexchangerates.org/api/latest.json?app_id={app_id}"  #app_id is a placeholder
+    base: "USD"
+
+    # the key is configuration as an environment variable under "Edit configuration"
