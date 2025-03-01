@@ -58,16 +58,20 @@
             >
                 <option value="">Select category</option>
                 <option th:each="c:${T(com.MyTutor2.model.enums.CategoryNameEnum).values()}" th:value="${c}"
-                        th:text="${c}">Main Dish
+                        th:text="${c}">
                 </option>
+<!--                <option th:each="c:${T(com.MyTutor2.model.enums.CategoryNameEnum).values()}" th:value="${c}"-->
+<!--                 TODO remove       th:text="${c}">Main Dish-->
+<!--                </option>-->
 
             </select>
 
-            <small class="text-danger invalid-feedback">The Category should not be empty.</small>
+<!--            <small class="text-danger invalid-feedback">The Category should not be empty.</small>   TODO remove-->
         </div>
 
         <div class="button-holder d-flex justify-content-center">
-            <button type="submit" class="btn btn-warning  mb-3" value="Register">Add tutoring offer</button>
+            <button type="submit" class="btn btn-warning">Add tutoring offer</button>
+<!--            <button type="submit" class="btn btn-warning" value="Register">Add tutoring offer</button>  TODO remove-->
         </div>
 
     </form>

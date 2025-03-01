@@ -5,19 +5,25 @@
 <body>
 <header th:replace="fragments/commons::nav"></header>
 <main>
-<!--    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>-->
-<!--    <hr class="hr-3 w-25 bg-white"/>-->
-    <form class="mx-auto w-25 bg-dark rounded p-3"
+
+<!--    mx-auto: centers the element horizontally-->
+<!--    w-25: Sets the width to 25% of the parent container.-->
+<!--    bg-dark: Applies a dark background color.-->
+<!--    p-3: Adds padding of 1rem (16px).-->
+<!--    mt-4: Adds a top margin of 1.5rem (24px).-->
+
+    <form class="mx-auto w-25 bg-dark rounded p-3 mt-4"
           th:action="@{/users/login}"
           th:method="POST"
           th:object="${userLogInDTO}"
     >
 
-<!--        <div th:if="${noSuchUser == false}" class="text-danger">Incorrect username or password!</div>-->
-<!--        <div th:if="${wrongInputDataAccordingToDTO == false}" class="text-danger">Password length must be between 2 and 40 characters!</div>-->
-<!--        <div th:if="${wrongInputDataAccordingToDTO == false}" class="text-danger">Username length must be between 2 and 40 characters!</div>-->
-
         <h1 class="text-center mt-2 text-white">Login</h1>
+
+
+
+<!--        th:field="*{username}": Binds the input field to the username property in the th:object="${userLogInDTO}-->
+<!--        If validation fails for this field, Thymeleaf automatically adds the Bootstrap is-invalid class, which highlights the input field in red.-->
 
         <div class="form-group">
             <label class="h4 text-white">Username:</label>
@@ -41,7 +47,10 @@
             />
         </div>
 
-        <div class="button-holder d-flex justify-content-center">
+<!--        d-flex: Applies display: flex;, making the container a flexbox.-->
+<!--        justify-content-center: Centers the child elements horizontally within the flex container.-->
+
+        <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-warning  mb-3">Login</button>
         </div>
 

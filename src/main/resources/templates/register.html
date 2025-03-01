@@ -8,7 +8,7 @@
 <header th:replace="fragments/commons::nav"></header>
 <main>
 
-    <form class="mx-auto w-25 bg-dark rounded p-3"
+    <form class="mx-auto w-25 bg-dark rounded p-3 mt-4"
           th:method="POST"
           th:action="@{/users/register}"
           th:object="${userRegisterDTO}"
@@ -57,7 +57,8 @@
         </div>
 
         <div class="button-holder d-flex justify-content-center">
-            <button type="submit" class="btn btn-warning  mb-3" value="Register">Register</button>
+<!--            <button type="submit" class="btn btn-warning  mb-3" value="Register">Register</button>-->
+            <button type="submit" class="btn btn-warning" >Register</button>
         </div>
 
     </form>
