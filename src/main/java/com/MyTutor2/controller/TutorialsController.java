@@ -3,14 +3,14 @@ package com.MyTutor2.controller;
 
 import com.MyTutor2.model.DTOs.TutorialAddDTO;
 import com.MyTutor2.service.TutoringService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import jakarta.validation.Valid;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 @RequestMapping("/tutoriels")
@@ -38,15 +38,16 @@ public class TutorialsController {
 //    RedirectAttributes redirectAttributes -
 
     @PostMapping("/add")
-    public String createTutorial(@Valid TutorialAddDTO tutorialAddDTO,
+    public String createTutorial(@AuthenticationPrincipal UserDetails userDetails,
+                                 @Valid TutorialAddDTO tutorialAddDTO,
                                  BindingResult bindingResult,
-                                 RedirectAttributes redirectAttributes) {  //TODO Security add @AuthenticationPrincipal UserDetails userDetails
+                                 RedirectAttributes redirectAttributes) {
 
 
         //    BindingResult bindingResult - through bindingResult we can access the result(errors) from the validation
         if (bindingResult.hasErrors()) {
 
-            //redirectAttributes will save the information in the DTO and teh errors for short time
+            //redirectAttributes will save the information in the DTO and errors for short time
             redirectAttributes.addFlashAttribute("tutorialAddDTO", tutorialAddDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.tutorialAddDTO", bindingResult);
 
@@ -54,9 +55,19 @@ public class TutorialsController {
 
         }
 
-        String userName = "user1"; //TODO security add userDetails.getUsername();
+        String userName = userDetails.getUsername();
 
         tutoringService.addTutoringOffer(tutorialAddDTO,userName);
+
+
+        return "redirect:/";
+    }
+
+
+    @GetMapping("/remove/{id}")
+    public String remove(@PathVariable Long id){
+
+        tutoringService.removeOfferById(id);
 
         return "redirect:/";
     }
