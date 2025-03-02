@@ -14,13 +14,14 @@
 * Spring
 * SQL
 * HTML, CSS
-* thymeleaf
+* Thymeleaf
+* Restfull & API
 
 ## Features
 
 * Registration
 * Log-In
 * Creatin of a new Tutoring offer in Mathematics, Informatics or Datascience.
-* search for an existing tutoring offer in Mathematics, Informatics or Datascience
+* Search for an existing tutoring offer in Mathematics, Informatics or Datascience
 * Control your personal ingormation
 * Log-out
