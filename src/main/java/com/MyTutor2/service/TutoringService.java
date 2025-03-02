@@ -9,5 +9,9 @@ public interface TutoringService {
 
     List<TutorialViewDTO> findAllByCategoryID(Long id);
 
+    List<TutorialViewDTO> findAllTutoringOffersByUserId(Long id);
+
     void addTutoringOffer(TutorialAddDTO tutorialAddDTO, String userName);
+
+    void removeOfferById(Long id);
 }
