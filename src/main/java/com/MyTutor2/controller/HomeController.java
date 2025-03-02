@@ -48,7 +48,7 @@ public class HomeController {
     }
 
     @GetMapping("/math")
-    public String mathematicsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+    public String mathematicsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {  //SpringSecurity_8  Use @AuthenticationPrincipal
 
         if (userDetails == null) {   //
             return "index";
