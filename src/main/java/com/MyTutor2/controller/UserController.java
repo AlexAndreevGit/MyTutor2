@@ -85,7 +85,7 @@ public class UserController {
 
         User logedInUser= userRepository.findByUsername(userDetails.getUsername()).orElse(null);
 
-        List<TutorialViewDTO> submittedByMeTutorialsAsView = tutoringService.findAllTutoringOffersByUserName(logedInUser.getId());
+        List<TutorialViewDTO> submittedByMeTutorialsAsView = tutoringService.findAllTutoringOffersByUserId(logedInUser.getId());
 
         double averagePriceBGN = submittedByMeTutorialsAsView.stream()
                 .mapToDouble(TutorialViewDTO::getPrice)
