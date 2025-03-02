@@ -18,7 +18,7 @@ import java.math.RoundingMode;
 import java.util.Objects;
 import java.util.Optional;
 
-//SpringSecurity_7 define all the needed methods
+//ExchangeRates_Step_7 define all the needed methods
 
 @Service
 public class ExRateServiceImpl implements ExRateService {

@@ -4,7 +4,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-//ExchangeRates_Step_5 Create the class ForexApiConfig to encapsulate the properties from the application.yaml in an object that we can use
+//ExchangeRates_Step_4 Create the class ForexApiConfig to encapsulate the properties from the application.yaml in an object that we can use
 
 //POJO for the configuration. Object with fields, getters and setters
 //the fields should be with the same names as in the application.yaml

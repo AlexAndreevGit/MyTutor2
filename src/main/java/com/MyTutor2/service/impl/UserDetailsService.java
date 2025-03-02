@@ -10,7 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-//SpringSecurity_2 -> MyTutorUserDetailsService
+//SpringSecurity_2 -> UserDetailsService
 // we implement the interface "implements UserDetailsService" -> so we explain to spring how a user looks in our application
 // on purpose no annotation, so it doesn't go in the context of spring
 //userDetailsServc is reading our representation of the user and return userDetails which is the spring representation of the user
@@ -26,31 +26,38 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        return  userRepository
+        UserDetails userDetails = userRepository
                 .findByUsername(username)
                 .map(u -> map(u))  //use the map(User user) method
-                .orElseThrow(()-> new UsernameNotFoundException("Username with username" + username + "not found!"));   // If not such user found then throw an exception
+                .orElseThrow(() -> new UsernameNotFoundException("Username with username" + username + "not found!"));   // If not such user found then throw an exception
 
+        return userDetails;
     }
 
 
     //The spring representation of the user is described by the interface "UserDetails"
-    private static UserDetails map(User user){
+    //MyTutorUserDetails extends User which extends UserDetails -> no error
+    private static UserDetails map(User user) {
 
-        return new MyTutorUserDetails(
+        MyTutorUserDetails myTutorUserDetails = new MyTutorUserDetails(
                 user.getUsername(),
                 user.getPassword(),
                 user.getRoles().stream().map(UserRoleEntity::getRole).map(UserDetailsService::map).toList()
+
         );
+
+        return myTutorUserDetails;
         //.map(UserRoleEntity::getRole)  for each element use the medtod getRole from the class UserRoleEntity
 
     }
 
     //"GrantedAuthority" is an interface with one method
-    private static GrantedAuthority map(UserRoleEnum role){
+    private static GrantedAuthority map(UserRoleEnum role) {
+
         return new SimpleGrantedAuthority(
                 "ROLE_" + role
         );
+
     }
 
 }

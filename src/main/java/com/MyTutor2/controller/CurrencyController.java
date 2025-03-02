@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 
-//SpringSecurity_9
+//ExchangeRates_Step_10
 @RestController   //@RestController means that the object that is returned will be converted to JSON object by spring
 public class CurrencyController {
 
@@ -28,6 +28,8 @@ public class CurrencyController {
         return ResponseEntity.ok(new CoversionResultDTO(from, to, amount, result));   // 1. Set the HTTP status to 200 OK and 2. allow Spring to serialize the DTO into a JSON response.
 
     }
+
+    //Someone can contact us over the URL "http://localhost:8080/api/convert" with a get request to covert and get a JSON back
 
     //1. LogIn in MyTutor
     //2. Send http://localhost:8080/api/convert?from=BGN&to=EUR&amount=10

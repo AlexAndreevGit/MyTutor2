@@ -65,6 +65,7 @@
         </dependency>
 
         <!--         https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity6 -->
+<!--        SpringSecurity_5 -> By this library(springsecurity6) we get additional extras that we don't have to implement ourselves-->
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity6</artifactId>

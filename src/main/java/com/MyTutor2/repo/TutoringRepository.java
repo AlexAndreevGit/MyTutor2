@@ -9,13 +9,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TutoringRepository extends JpaRepository<TutoringOffer,Long> {
+public interface TutoringRepository extends JpaRepository<TutoringOffer, Long> {
 
-    //TODO find all by category id
 
     List<TutoringOffer> findAllByCategoryId(Long i);
 
-    //TODO find by added by id
+    List<TutoringOffer> findAllByAddedById(Long id);
 
 
 }

@@ -1,3 +1,4 @@
+//ExchangeRates_Step_6 define a repository for the exchange rates
 package com.MyTutor2.repo;
 
 
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-//SpringSecurity_8 define a repository for the exchange rates
 
 @Repository
 public interface ExRateRepository extends JpaRepository<ExRateEntity,Long> {

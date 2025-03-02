@@ -48,8 +48,8 @@ public class SecurityConfig {
                 .build();                                               //Section 4 -> call the build-method at the end
     }
 
-    //SpringSecurity_3 -> we are exposing "MyTutorUserDetailsService" as a bean
-    //SpringSecurity_4 -> By this library(springsecurity6) we get additional extras that we don't have to implement ourselves
+    //SpringSecurity_4 -> we are exposing "UserDetailsService" as a bean, so it is managed by spring
+
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository){
         return new UserDetailsService(userRepository);  //we translate the users to representation which spring security understands

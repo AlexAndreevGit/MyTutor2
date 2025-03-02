@@ -6,7 +6,7 @@ import com.MyTutor2.model.DTOs.ExRatesDTO;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-//SpringSecurity_6 define an interface with the needed abstract methods
+//ExchangeRates_Step_5 define an interface with the needed abstract methods
 public interface ExRateService {
 
     boolean hasInitialisedExRates();

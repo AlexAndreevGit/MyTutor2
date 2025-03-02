@@ -5,14 +5,11 @@ import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
-//SpringSecurity_6
+//SpringSecurity_7
 public class MyTutorUserDetails extends User {
 
-    public MyTutorUserDetails(
-            String username,
-            String password,
-            Collection<? extends GrantedAuthority> authorities
-    ) {
+    public MyTutorUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+
         super(username, password, authorities);
 
     }
