@@ -60,23 +60,23 @@ public class ExRateServiceImpl implements ExRateService {
         LOGGER.info("Updating {} rates.", exRatesDTO.rates().size());  //  "Updating 169 rates."
 
         //prove if the base is correct
-        if (!forexApiConfig.getBase().equals(exRatesDTO.base())) {
-            //Throw exception
+        if (!forexApiConfig.getBase().equals(exRatesDTO.base())) {  // in the records we don't have getBase(). Instead we have .base()
+            //Exception
             throw new IllegalArgumentException("the exchange rates that should be updated are not based on " + forexApiConfig.getBase() + "but rather on" + exRatesDTO.base());
         }
 
         //TODO understand and optimise
-        exRatesDTO.rates().forEach((currency, rate) -> {   // go through the whole "currency, rate" map
-
-            ExRateEntity exRateEntity = exRateRepository.findByCurrency(currency)   //do we have such an ExRateEntity
-                    .orElseGet(() -> {    //If it doesnt exist in the DB, then create a new one
+        exRatesDTO.rates().forEach((currency, rate) ->
+        {
+            ExRateEntity exRateEntity = exRateRepository.findByCurrency(currency)   // Example -> we try to find  BGN
+                    .orElseGet(() -> {                                              //If it doesn't exist in the DB, then create a new one
                                 ExRateEntity exRateEntityNew = new ExRateEntity();
                                 exRateEntityNew.setCurrency(currency);
                                 return exRateEntityNew;
                             }
                     );
 
-            //set the rate
+            //update or set(if new one) the rate
             exRateEntity.setRate(rate);
 
             exRateRepository.save(exRateEntity);
@@ -86,7 +86,7 @@ public class ExRateServiceImpl implements ExRateService {
     }
 
     @Override
-    public Optional<BigDecimal> findExRate(String from, String to) {
+    public Optional<BigDecimal> findExRate(String from, String to) { //Example from BGN to EUR
 
         if (Objects.equals(from, to)) {
             return Optional.of(BigDecimal.ONE);
@@ -101,19 +101,38 @@ public class ExRateServiceImpl implements ExRateService {
         //y * EUR = x * BGN
 
         //EUR/BGN = x / y
+        //    to/from
 
-        Optional<BigDecimal> fromOpt = forexApiConfig.getBase().equals(from) ?
-                Optional.of(BigDecimal.ONE) :
-                exRateRepository.findByCurrency(from).map(ExRateEntity::getRate);
 
-        Optional<BigDecimal> toOpt = forexApiConfig.getBase().equals(to) ?
-                Optional.of(BigDecimal.ONE) :
-                exRateRepository.findByCurrency(to).map(ExRateEntity::getRate);
+        Optional<BigDecimal> fromOpt;
+
+        if (forexApiConfig.getBase().equals(from)) {
+            fromOpt = Optional.of(BigDecimal.ONE);
+        } else {
+
+            fromOpt = exRateRepository.findByCurrency(from).map(ExRateEntity::getRate);
+        }
+
+        Optional<BigDecimal> toOpt;
+
+        if (forexApiConfig.getBase().equals(to)) {
+            toOpt = Optional.of(BigDecimal.ONE);
+        } else {
+            toOpt = exRateRepository.findByCurrency(to).map(ExRateEntity::getRate);
+        }
+
+//        Optional<BigDecimal> fromOpt = forexApiConfig.getBase().equals(from) ?
+//                Optional.of(BigDecimal.ONE) :
+//                exRateRepository.findByCurrency(from).map(ExRateEntity::getRate);
+//
+//        Optional<BigDecimal> toOpt = forexApiConfig.getBase().equals(to) ?
+//                Optional.of(BigDecimal.ONE) :
+//                exRateRepository.findByCurrency(to).map(ExRateEntity::getRate);
 
         if (fromOpt.isEmpty() || toOpt.isEmpty()) {
             return Optional.empty();
         } else {
-            return Optional.of(toOpt.get().divide(fromOpt.get(),RoundingMode.HALF_DOWN));
+            return Optional.of(toOpt.get().divide(fromOpt.get(), RoundingMode.HALF_DOWN));
         }
     }
 
@@ -121,8 +140,7 @@ public class ExRateServiceImpl implements ExRateService {
     public BigDecimal convert(String from, String to, BigDecimal amount) {
 
         BigDecimal exchangeRate = findExRate(from, to)
-                .orElseThrow(() -> new ObjectNotFoundException("Conversion from " + from + " to " + to + " not possible.")); //If the exchange rate is not found throw an exception
-
+                .orElseThrow(() -> new ObjectNotFoundException("Conversion from " + from + " to " + to + " not possible.")); //If the exchange rate is not found throw an Exception
         return exchangeRate.multiply(amount);
 
     }

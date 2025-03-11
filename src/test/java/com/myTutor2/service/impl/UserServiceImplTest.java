@@ -5,17 +5,18 @@ import com.MyTutor2.model.entity.User;
 import com.MyTutor2.model.entity.UserRoleEntity;
 import com.MyTutor2.repo.UserRepository;
 import com.MyTutor2.repo.UserRoleRepository;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;

@@ -26,8 +26,10 @@ public class User extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)//@ManyToMany is "lasy" by default. We change it to "eager" so they are fetch all at once
     @JoinTable(
             name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
+//            joinColumns = @JoinColumn(name = "user_id"),  TODO   remove if properly working. update picture in github
+//            inverseJoinColumns = @JoinColumn(name = "role_id")
+            joinColumns = @JoinColumn(name = "User_id"),
+            inverseJoinColumns = @JoinColumn(name = "UserRoleEntity_id")
     )
     private List<UserRoleEntity> roles = new ArrayList<>();
 

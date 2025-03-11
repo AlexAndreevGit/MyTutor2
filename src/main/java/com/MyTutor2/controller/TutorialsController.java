@@ -64,7 +64,7 @@ public class TutorialsController {
     }
 
 
-    @GetMapping("/remove/{id}")
+    @GetMapping("/remove/{id}")    // <a class="ml-3 text-danger" th:href="@{/tutoriels/remove/{id}(id = *{id})}">Remove</a>
     public String remove(@PathVariable Long id){
 
         tutoringService.removeOfferById(id);

@@ -4,6 +4,7 @@ import com.MyTutor2.model.entity.TutoringOffer;
 import com.MyTutor2.model.entity.User;
 import com.MyTutor2.repo.TutoringRepository;
 import com.MyTutor2.repo.UserRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,8 @@ public class StatisticsController {
         this.userRepository = userRepository;
     }
 
+
+    @PreAuthorize("hasRole('ADMIN')") // SpringSecurity_12 Only users with the ADMIN role can access this method
     @GetMapping("/statistics")
     public String statistics(Model model) {
 
@@ -49,20 +52,4 @@ public class StatisticsController {
         return "statistics";
     }
 
-
 }
-
-
-//                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2" th:text="|Number of the Informatics offers: ${countInformticsTutorials}|"></h3>
-//                </div>
-//
-//                <div>
-//                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2" th:text="|Number of the Mathematics offers: ${countMathematicsTutorials}|"></h3>
-//                </div>
-//
-//                <div>
-//                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2" th:text="|Number of the Datascience offers: ${countDatascienceTutorials}|"></h3>
-//                </div>
-//
-//                <div>
-//                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2" th:text="|Number of all registered tutors: ${countAllUsers}|"></h3>

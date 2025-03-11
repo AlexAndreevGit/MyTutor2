@@ -39,15 +39,15 @@ public class UserDetailsService implements org.springframework.security.core.use
     //MyTutorUserDetails extends User which extends UserDetails -> no error
     private static UserDetails map(User user) {
 
-        MyTutorUserDetails myTutorUserDetails = new MyTutorUserDetails(
+        MyTutorUserDetails myTutorUserDetails = new MyTutorUserDetails(   //MyTutorUserDetails has only the fields needed for UserDetails
                 user.getUsername(),
                 user.getPassword(),
-                user.getRoles().stream().map(UserRoleEntity::getRole).map(UserDetailsService::map).toList()
+                user.getRoles().stream().map(UserRoleEntity::getRole).map(UserDetailsService::map).toList() //.map(UserRoleEntity::getRole)  for each element use the method getRole from the class UserRoleEntity
 
         );
 
         return myTutorUserDetails;
-        //.map(UserRoleEntity::getRole)  for each element use the medtod getRole from the class UserRoleEntity
+
 
     }
 

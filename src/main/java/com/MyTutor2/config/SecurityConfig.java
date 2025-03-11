@@ -6,12 +6,14 @@ import com.MyTutor2.service.impl.UserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableMethodSecurity  //Enable method level security
 public class SecurityConfig {
 
     //SpringSecurity_1 ->
@@ -28,6 +30,7 @@ public class SecurityConfig {
                             authorizeRequests
                                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() //all static resources(CSS,images, JS) are accessible for everyone
                                     .requestMatchers("/", "users/login", "users/register").permitAll()          //accessible for all users
+                                    .requestMatchers("/admin/**").hasRole("ADMIN") // Restrict access to /admin/** URLs only for users with the role ARMIN
                                     .anyRequest().authenticated()       //for all other requests, we need an authenticated user.
                 )
                 .formLogin(formLogin ->                               //Section 2 -> .formLogin()

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 //POJO for the configuration. Object with fields, getters and setters
 //the fields should be with the same names as in the application.yaml
 @Configuration
-@ConfigurationProperties(prefix = "forex.api") // In the prefix we put forex.api from the application.yaml. Then we put "key", "url" and "base" as fields
+@ConfigurationProperties(prefix = "forex.api") // In the prefix we put forex.api from the application.yaml. Then we put "key", "url" and "base" as fields and the values form the .yaml will be injected in the fields
 public class ForexApiConfig {
 
     private String key;
@@ -52,7 +52,7 @@ public class ForexApiConfig {
 
         if(!"USD".equals(base)){
 
-            //throw Exception
+            //Exception
             throw new IllegalStateException(" Sorry but the free API does not support base currencies different then USD.");
 
         }
@@ -62,7 +62,7 @@ public class ForexApiConfig {
     private static void verifyNotNullOrEmpty(String name, String value){
         if(value==null || value.isBlank()){
 
-            //throw Exception
+            //Exception
             throw new IllegalArgumentException("Property" + name + "cant be empty");
         }
     }

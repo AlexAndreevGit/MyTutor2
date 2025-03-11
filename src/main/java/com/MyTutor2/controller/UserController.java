@@ -92,8 +92,14 @@ public class UserController {
                 .average()
                 .orElse(0.0);
 
+        BigDecimal averagePriceEUR = BigDecimal.ZERO;
 
-        BigDecimal averagePriceEUR = exRateService.convert("BGN","EUR",BigDecimal.valueOf(averagePriceBGN));
+        //ExceptionHandling
+        try{
+            averagePriceEUR = exRateService.convert("BGN","EUR",BigDecimal.valueOf(averagePriceBGN));
+        }catch(Exception e){
+            System.out.println("It is not possible to calculate the average price.");
+        }
 
         model.addAttribute("userName",logedInUser.getName());
         model.addAttribute("userEmail",logedInUser.getEmail());
