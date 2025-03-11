@@ -25,3 +25,7 @@
 * Search for an existing tutoring offer in Mathematics, Informatics or Datascience
 * Control your personal ingormation
 * Log-out
+
+## Entity Relationship Diagram (ERD)
+![Image](https://github.com/user-attachments/assets/642ab2d7-eedb-4b76-9fed-3a5318ce74ac)
+
