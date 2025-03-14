@@ -27,7 +27,8 @@ public class HomeController {
             return "index";
         }
 
-        return "home";
+        return "index";  //TODO home not needed we go to index
+        //return "home";  //TODO when loged in then we go to home
 
     }
 
@@ -35,7 +36,7 @@ public class HomeController {
     @GetMapping("/info")
     public String informaticsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 
-        if (userDetails == null) {   //
+        if (userDetails == null) {
             return "index";
         }
 
@@ -50,7 +51,7 @@ public class HomeController {
     @GetMapping("/math")
     public String mathematicsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {  //SpringSecurity_8  Use @AuthenticationPrincipal
 
-        if (userDetails == null) {   //
+        if (userDetails == null) {
             return "index";
         }
 
