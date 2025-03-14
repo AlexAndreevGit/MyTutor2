@@ -20,16 +20,13 @@ public class User extends BaseEntity {
     private String email;
 
 
-//TODO better understand
-
     //SpringSecurity_11 list of all roles that the user has. If the user has the admin role then he is an administrator
-    @ManyToMany(fetch = FetchType.EAGER)//@ManyToMany is "lasy" by default. We change it to "eager" so they are fetch all at once
+    @ManyToMany(fetch = FetchType.EAGER)//@ManyToMany is "lasy" by default. We change it to "eager", so the roles are fetched when we retrieve a User.
     @JoinTable(
             name = "user_roles",
-//            joinColumns = @JoinColumn(name = "user_id"),  TODO   remove if properly working. update picture in github
-//            inverseJoinColumns = @JoinColumn(name = "role_id")
-            joinColumns = @JoinColumn(name = "User_id"),
-            inverseJoinColumns = @JoinColumn(name = "UserRoleEntity_id")
+            // joinColumn and inverseJoinColumn are fixed attributes of the @JoinTable
+            joinColumns = @JoinColumn(name = "User_id"), //specifies the foreign key that refers to the current entity
+            inverseJoinColumns = @JoinColumn(name = "UserRoleEntity_id") //specifies the foreign key that refers to the other entity
     )
     private List<UserRoleEntity> roles = new ArrayList<>();
 
