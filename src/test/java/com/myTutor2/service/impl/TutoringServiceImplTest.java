@@ -114,13 +114,6 @@ public class TutoringServiceImplTest {
     }
 
 
-    // TODO
-//    @Override
-//    public void removeOfferById(Long id) {
-//        tutoringRepository.deleteById(id);
-//    }
-
-
 
 
 
