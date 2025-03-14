@@ -35,13 +35,11 @@ public class TutorialsController {
 
 
 //    @Valid TutorialAddDTO tutorialAddDTO - we make a validation. Validate that the submitted input information fulfill the DTO(@Size(), @NotNull, @Positiv ) validation criteria
-//    RedirectAttributes redirectAttributes -
-
     @PostMapping("/add")
-    public String createTutorial(@AuthenticationPrincipal UserDetails userDetails,
-                                 @Valid TutorialAddDTO tutorialAddDTO,
-                                 BindingResult bindingResult,
-                                 RedirectAttributes redirectAttributes) {
+    public String createTutorial(@AuthenticationPrincipal UserDetails userDetails,  // source: Spring security
+                                 @Valid TutorialAddDTO tutorialAddDTO,              // source: HTTP request
+                                 BindingResult bindingResult,                       // source: Spring MVC
+                                 RedirectAttributes redirectAttributes) {           // source: Spring MVC
 
 
         //    BindingResult bindingResult - through bindingResult we can access the result(errors) from the validation
@@ -59,7 +57,6 @@ public class TutorialsController {
 
         tutoringService.addTutoringOffer(tutorialAddDTO,userName);
 
-
         return "redirect:/";
     }
 
@@ -69,7 +66,7 @@ public class TutorialsController {
 
         tutoringService.removeOfferById(id);
 
-        return "redirect:/";
+        return "redirect:/home";
     }
 
 
