@@ -27,5 +27,5 @@
 * Log-out
 
 ## Entity Relationship Diagram (ERD)
-![Image](https://github.com/user-attachments/assets/642ab2d7-eedb-4b76-9fed-3a5318ce74ac)
+![Image](https://github.com/user-attachments/assets/635ad614-5884-4e3f-8ada-55e9112925a8)
 
