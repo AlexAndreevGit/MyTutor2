@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableMethodSecurity  //Enable method level security
+@EnableMethodSecurity  //Enable method level security   ->   .requestMatchers("/admin/**").hasRole("ADMIN")
 public class SecurityConfig {
 
     //SpringSecurity_1 ->
@@ -21,7 +21,6 @@ public class SecurityConfig {
     //Creating a "SecurityFilterChain"
     //With HttpSecurity we can easily create security filer chain. It is a builder for the class "SecurityFilterChain"
     //With the fluent-API it is convenient to make the configuration
-    //We cant debug the fluent-API
 
     @Bean    //Expose the "SecurityFilterChain" as a bean. Spring takes it and puts it as a filter in the filter chain
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -29,7 +28,7 @@ public class SecurityConfig {
                     authorizeRequests ->                                //with the lambda we explain what is accessible and what not
                             authorizeRequests
                                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() //all static resources(CSS,images, JS) are accessible for everyone
-                                    .requestMatchers("/", "users/login", "users/register").permitAll()          //accessible for all users
+                                    .requestMatchers("/", "users/login","/users/login-error", "users/register","/api/convert").permitAll()          //accessible for all users
                                     .requestMatchers("/admin/**").hasRole("ADMIN") // Restrict access to /admin/** URLs only for users with the role ARMIN
                                     .anyRequest().authenticated()       //for all other requests, we need an authenticated user.
                 )
@@ -38,8 +37,8 @@ public class SecurityConfig {
                                 .loginPage("/users/login")     //the login page should be our custom login page
                                 .usernameParameter("username") //The name of the username parameter. Same as in the login.html
                                 .passwordParameter("password") //The password of the user parameter. Same as in the login.html
-                                .defaultSuccessUrl("/",true)  // URL if the login is successful
-                                .failureForwardUrl("/users/login-error")               // TODO client side redirect, if the login fails    failerURL- server side
+                                .defaultSuccessUrl("/home",true)  // URL if the login is successful
+                                .failureUrl("/users/login-error")
                 )
                 .logout(                                                //Section 3 -> .logout()
                         logout ->
@@ -55,7 +54,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository){
-        return new UserDetailsService(userRepository);  //we translate the users to representation which spring security understands
+        return new UserDetailsService(userRepository);  //we translate the users to representation that spring security understands
     }
 
 
