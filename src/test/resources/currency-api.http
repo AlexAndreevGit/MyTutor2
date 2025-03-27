@@ -1,0 +1,4 @@
+
+### GET request with parameter
+GET http://localhost:8080/api/convert?from=BGN&to=EUR&amount=101
+Accept: application/json
