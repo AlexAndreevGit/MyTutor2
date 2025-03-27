@@ -8,48 +8,155 @@
 
 <header th:replace="fragments/commons::nav"></header>
 
-<main>
-    <div class="container bg-blur rounded mt-1 mb-2">
+<main class="container py-4" >
+    <div class="profile-container">
 
-        <div class="row ">
+        <div class="profile-header">
 
-            <div class="col-12 mt-1 mb-1">
-                <div>
+            <div class="profile-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
 
-                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Username: ${userName}|"></h3>
-                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Email: ${userEmail}|"></h3>
-                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Number of classes: ${numberOfClasses}|+' Classes'"></h3>
-                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Average Price all classes in BGN: ${averagePriceBGN}|+' Leva'"></h3>
-                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Average Price all classes in EUR: ${averagePriceEUR}|+' Leva'"></h3>
+            <h1 class="profile-title" th:text="${userName}"></h1>
+            <p class="profile-subtitle" th:text="${userEmail}"></p>
+        </div>
 
+        <div class="profile-stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+
+                <div class="stat-content">
+                    <h3 class="stat-value" th:text="${numberOfClasses}"></h3>
+                    <p class="stat-label">Classes</p>
                 </div>
 
             </div>
 
-            <div class="col-12 mt-1 mb-1">
-                <div>
-                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2" >Offers submitted by me:</h3>
-                    <div class="bg-dark rounded m-auto" style="height: 50vh; overflow: auto">
-                        <table class="table table-striped table-dark">
-                            <div th:each="w: ${submittedByMeTutorialsAsView}" th:object="${w}" class="mt-3 rounded badge-warning">
+            <div class="stat-card">
 
-                                <span class="badge bg-primary">Offer name: </span> <span th:text="*{name}" />
-                                <br>
-                                <span class="badge bg-primary">Offer description: </span> <span class="limited-span" th:text="*{description}" /> </span>
-                                <br>
-                                <span class="badge bg-primary">Price per hoer (BGN): </span> <span th:text="*{price}" />
-                                <br>
-                                <a class="ml-3 text-danger" th:href="@{/tutoriels/remove/{id}(id = *{id})}">Remove</a>
+                <div class="stat-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
 
-                            </div>
+                <div class="stat-content">
+                    <h3 class="stat-value" th:text="${averagePriceBGN} + ' Leva'"></h3>
+                    <p class="stat-label">Avg. Price (BGN)</p>
+                </div>
 
-                        </table>
-                    </div>
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fas fa-euro-sign"></i>
+                </div>
+
+                <div class="stat-content">
+                    <h3 class="stat-value" th:text="${averagePriceEUR} + ' Leva'"></h3>
+                    <p class="stat-label">Avg. Price (EUR)</p>
                 </div>
 
             </div>
 
         </div>
+
+        <div class="offers-list-container">
+
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-clipboard-list me-2"></i>
+                    My Tutoring Offers
+                </h2>
+                <a href="/tutorials/add" class="btn-action secondary">
+                    <i class="fas fa-plus-circle"></i> Add New Offer
+                </a>
+            </div>
+
+            <div class="offers-container">
+                <div th:each="w:${submittedByMeTutorialsAsView}" th:object="${w}" class="user-offer-card">
+
+
+                    <div class="offer-card-header">
+                        <h3 class="offer-name" th:text="*{name}"></h3>
+                        <div class="offer-price">
+                            <span th:text="*{price}"></span>
+                            <span class="price-currency">BGN</span>
+                        </div>
+                    </div>
+
+                    <div class="offer-description">
+                        <p th:text="*{description}"></p>
+                    </div>
+
+                    <div class="offer-actions">
+                        <a class="btn-edit" href="#">
+                            <i class="fas fa-pencil-alt"></i> Edit
+                        </a>
+
+                        <a class="btn-delete" th:href="@{/tutorials/remove/{id}(id = *{id})}">
+                            <i class="fas fa-trash-alt"></i> Remove
+                        </a>
+                    </div>
+
+
+                </div>
+
+                <div th:if="${submittedByMeTutorialsAsView.isEmpty()}" class="no-offers">
+                    <i class="fas fa-search fa-3x mb-3"></i>
+                    <h3>No mathematics offers available</h3>
+                    <p>Check back later or explore other subject areas.</p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!--    <div class="container bg-blur rounded mt-1 mb-2">-->
+
+        <!--        <div class="row ">-->
+
+        <!--            <div class="col-12 mt-1 mb-1">-->
+        <!--                <div>-->
+
+        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Username: ${userName}|"></h3>-->
+        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Email: ${userEmail}|"></h3>-->
+        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Number of classes: ${numberOfClasses}|+' Classes'"></h3>-->
+        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Average Price all classes in BGN: ${averagePriceBGN}|+' Leva'"></h3>-->
+        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Average Price all classes in EUR: ${averagePriceEUR}|+' Leva'"></h3>-->
+
+        <!--                </div>-->
+
+        <!--            </div>-->
+
+        <!--            <div class="col-12 mt-1 mb-1">-->
+        <!--                <div>-->
+        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2" >Offers submitted by me:</h3>-->
+        <!--                    <div class="bg-dark rounded m-auto" style="height: 50vh; overflow: auto">-->
+        <!--                        <table class="table table-striped table-dark">-->
+        <!--                            <div th:each="w: ${submittedByMeTutorialsAsView}" th:object="${w}" class="mt-3 rounded badge-warning">-->
+
+        <!--                                <span class="badge bg-primary">Offer name: </span> <span th:text="*{name}" />-->
+        <!--                                <br>-->
+        <!--                                <span class="badge bg-primary">Offer description: </span> <span class="limited-span" th:text="*{description}" /> </span>-->
+        <!--                                <br>-->
+        <!--                                <span class="badge bg-primary">Price per hoer (BGN): </span> <span th:text="*{price}" />-->
+        <!--                                <br>-->
+        <!--                                <a class="ml-3 text-danger" th:href="@{/tutoriels/remove/{id}(id = *{id})}">Remove</a>-->
+
+        <!--                            </div>-->
+
+        <!--                        </table>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+
+        <!--            </div>-->
+
+        <!--        </div>-->
+        <!--    </div>-->
     </div>
 </main>
 
