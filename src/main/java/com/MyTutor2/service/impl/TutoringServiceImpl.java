@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TutoringServiceImpl implements TutoringService {
@@ -84,18 +85,25 @@ public class TutoringServiceImpl implements TutoringService {
 
     private List<TutorialViewDTO> returnListOfOffersAsViewDTO(List<TutoringOffer> listOfOffers) {
 
-        List<TutorialViewDTO> outputListOfDTOs = new ArrayList<>();
+//        List<TutorialViewDTO> outputListOfDTOs = new ArrayList<>();
+//
+//        for (TutoringOffer currentTutoringOffer : listOfOffers) {
+//
+//            TutorialViewDTO tutorialViewDTO = modelMapper.map(currentTutoringOffer, TutorialViewDTO.class);
+//            tutorialViewDTO.setEmailOfTheTutor(currentTutoringOffer.getAddedBy().getEmail());
+//            outputListOfDTOs.add(tutorialViewDTO);
+//
+//        }
+//
+//        return outputListOfDTOs;
 
-        //TODO solve this with a map
-        for (TutoringOffer currentTutoringOffer : listOfOffers) {
-
-            TutorialViewDTO tutorialViewDTO = modelMapper.map(currentTutoringOffer, TutorialViewDTO.class);
-            tutorialViewDTO.setEmailOfTheTutor(currentTutoringOffer.getAddedBy().getEmail());
-            outputListOfDTOs.add(tutorialViewDTO);
-
-        }
-
-        return outputListOfDTOs;
+        return listOfOffers.stream()
+                .map(offer -> {
+                    TutorialViewDTO dto = modelMapper.map(offer, TutorialViewDTO.class);
+                    dto.setEmailOfTheTutor(offer.getAddedBy().getEmail());
+                    return dto;
+                })
+                .collect(Collectors.toList());
 
     }
 
