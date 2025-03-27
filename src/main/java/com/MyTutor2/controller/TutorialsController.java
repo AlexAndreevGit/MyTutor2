@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/tutoriels")
+@RequestMapping("/tutorials")
 public class TutorialsController {
 
     private TutoringService tutoringService;
