@@ -28,7 +28,7 @@ public class SecurityConfig {
                     authorizeRequests ->                                //with the lambda we explain what is accessible and what not
                             authorizeRequests
                                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() //all static resources(CSS,images, JS) are accessible for everyone
-                                    .requestMatchers("/", "users/login","/users/login-error", "users/register","/api/convert").permitAll()          //accessible for all users
+                                    .requestMatchers("/","/home", "/about-us", "users/login","/users/login-error", "users/register","/api/convert").permitAll()          //accessible for all users
                                     .requestMatchers("/admin/**").hasRole("ADMIN") // Restrict access to /admin/** URLs only for users with the role ARMIN
                                     .anyRequest().authenticated()       //for all other requests, we need an authenticated user.
                 )

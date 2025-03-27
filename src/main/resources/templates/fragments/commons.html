@@ -11,76 +11,132 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css"/>
 
+
+    <!-- Add Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 
 <body>
 
 <header>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <ul class="navbar-nav">
-            <li class="nav-item mr-2">
-                <a class="btn btn-primary" href="/home">Home</a>
+    <nav class="navbar navbar-expand-lg navbar-light modern-navbar">
+        <!--        navbar - This class is required for creating a Bootstrap navigation bar. It applies default navbar styles like padding and background handling.-->
+        <!--        navbar-expand-lg - This class controls when the navbar collapses into a hamburger menu.-->
+        <!--        navbar light - This class makes the navbar test and links dark to contrast with a light background-->
+
+        <a class="navbar-brand" href="/home">
+            <i class="fas fa-chalkboard-teacher brand-icon"></i>
+            <span class="brand-text">MyTutor</span>
+        </a>
+
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">  <!-- <ul> (unordered list) -->
+
+            <!--            navbar-nav - This class is used for a list of navigation links-->
+            <!--            me-auto - margin-end auto - automatically pushes the navigation items to the left side-->
+            <!--            mb-2 - Adds a small bottom margin (.5rem or 8px)-->
+            <!--            mb-lg-0 - Removes the bottom margin (mb-0) on large screens (≥992px)-->
+
+            <li class="nav-item">  <!-- <li> (list item) -->
+
+                <!-- nav-item - class in bootstrap used to style individual items -->
+
+                <a class="nav-link-button" href="/home">
+                    <i class="fas fa-home nav-icon"></i> Home
+                </a>
             </li>
 
-            <!--            SpringSecurity_5        sec:authorize="isAuthenticated()  if the user is loged in, then show this button  -->
-            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
-                <a class="btn btn-primary" href="/tutoriels/add">Add Tutoring Offer</a>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link-button" href="/tutorials/add">
+                    <i class="fas fa-plus-circle nav-icon"></i> Add Offer
+                </a>
             </li>
 
-            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
-                <a class="btn btn-primary" href="/info">Tutoring Offers Informatics</a>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link-button" href="/info">
+                    <i class="fas fa-laptop-code nav-icon"></i> Informatics
+                </a>
             </li>
 
-            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
-                <a class="btn btn-primary" href="/math">Tutoring Offers Mathematics</a>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link-button" href="/math">
+                    <i class="fas fa-square-root-alt nav-icon"></i> Mathematics
+                </a>
             </li>
 
-            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
-                <a class="btn btn-primary" href="/data">Tutoring Offers Datascience</a>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link-button" href="/data">
+                    <i class="fas fa-chart-line nav-icon"></i> Data Science
+                </a>
             </li>
 
-
-            <!--            SpringSecurity_6        sec:authorize="hasRole('ADMIN')"  if the user is administrator, then show this button  -->
-            <li class="nav-item mr-2" sec:authorize="hasRole('ADMIN')">
-                <a class="btn btn-primary" href="/admin/statistics">Statistic</a>
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link-button" href="/admin/statistics">
+                    <i class="fas fa-chart-bar nav-icon"></i> Statistics
+                </a>
             </li>
 
-
-            <li class="nav-item mr-2" sec:authorize="!isAuthenticated()">
-                <a class="btn btn-primary" href="/users/login">Login</a>
+            <li class="nav-item" >
+                <a class="nav-link-button" href="/about-us">
+                    <i class="fas fa-info-circle nav-icon"></i> About Us
+                </a>
             </li>
 
-            <li class="nav-item mr-2" sec:authorize="!isAuthenticated()">
-                <a class="btn btn-primary" href="/users/register">Register</a>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link-button" href="/users/my-information">
+                    <i class="fas fa-user nav-icon"></i> My Information
+                </a>
             </li>
-
-            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
-                <a class="btn btn-primary" href="/users/about-us">About us</a>
-            </li>
-
-            <li class="nav-item mr-2" sec:authorize="isAuthenticated()">
-                <a class="btn btn-primary" href="/users/my-information">My Information</a>
-            </li>
-
-            <li class="nav-item " sec:authorize="isAuthenticated()">
-                <form th:method="post"
-                      th:action="@{/users/logout}">
-                    <input class="btn btn-primary" type="submit" value="Logout"/>
-                </form>
-            </li>
-
         </ul>
+
+        <div class="d-flex ">
+
+            <!--            d-flex - clas in bootstrap that allows the element to become flex container. more effective alignment-->
+
+            <ul class="navbar-nav">
+
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="btn-login" href="/users/login">
+                        <i class="fas fa-sign-in-alt nav-icon"></i> Login
+                    </a>
+                </li>
+
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="btn-register" href="/users/register">
+                        <i class="fas fa-user-plus nav-icon"></i> Register
+                    </a>
+                </li>
+
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <form th:method="post" th:action="@{/users/logout}">
+                        <button class="btn-logout" type="submit">
+                            <i class="fas fa-sign-out-alt nav-icon aanMargin"></i> Logout
+                        </button>
+                    </form>
+                </li>
+
+            </ul>
+
+        </div>
 
     </nav>
 
 </header>
 
-<footer class="footer bg-transparent ">
-    <div class="container-fluid text-left h5 text-primary fixed-bottom">
-        Be better. Learn faster!
-    </div>
-</footer>
+<!--<footer class="footer bg-transparent ">-->
+<!--    <div class="container-fluid text-left h5 text-primary fixed-bottom">-->
+<!--        Be better. Learn faster!-->
+<!--        <i class="fas fa-graduation-cap"></i> Be better. Learn faster!-->
+<!--    </div>-->
+<!--</footer>-->
+
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

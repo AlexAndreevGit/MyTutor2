@@ -1,64 +1,107 @@
-<body>
-
-
-<header th:replace="fragments/commons::nav"></header>
-<!--            TODO update CSS-->
-
-<main>
-    <div class="container bg-blur px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 align-items-center my-5">
-            <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://www.mystipendium.de/sites/default/files/styles/width_1003/public/images/bewerbung/nachhilfe_geben.jpg?itok=DntH9A84" alt="..."></div>
-            <div class="col-lg-5">
-                <h1 class="font-weight-light">MyTutor</h1>
-                <p>MyTutor is a project with the purpose of connecting students in need of a tutoring to another students ready to offer there tutoring sculls.</p>
-                <a class="btn btn-primary" th:href="@{/}">Find your tutor now!</a>
-            </div>
-        </div>
-
-        <div class="card text-white bg-secondary my-5 py-4 text-center">
-            <div class="card-body"><p class="text-white m-0">We offer connection in the fields of mathematics, informatics and data science.</p></div>
-        </div>
-
-        <div class="row gx-4 gx-lg-5">
-            <div class="col-md-4 mb-5">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h2 class="card-title text-dark">Mathematics</h2>
-                        <p class="card-text text-dark">Mathematics is the science of number, quantity, and space, which can be applied to patterns, structures, and changes in the physical world through logical reasoning and quantitative calculations.</p>
-                    </div>
-                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://en.wikipedia.org/wiki/Mathematics#:~:text=Mathematics%20is%20an%20area%20of,and%20quantities%20and%20their%20changes.">More Info</a></div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-5">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h2 class="card-title text-dark">Informatics</h2>
-                        <p class="card-text text-dark">Informatics is the interdisciplinary study of information processing, management, and dissemination, encompassing the design, implementation, and evaluation of computational systems and their impact on society.</p>
-                    </div>
-                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://en.wikipedia.org/wiki/Informatics">More Info</a></div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-5">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h2 class="card-title text-dark">Data Science</h2>
-                        <p class="card-text text-dark">Data science is the multidisciplinary field that combines statistical analysis, machine learning, and domain expertise to extract insights and knowledge from structured and unstructured data.</p>
-                    </div>
-                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://en.wikipedia.org/wiki/Data_science">More Info</a></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</main>
-
-</body>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-
 <head th:replace="fragments/commons::head"></head>
 
+<body>
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="container py-4">
+    <!-- Hero Section -->
+    <div class="about-hero">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="about-image-container">
+                    <img class="about-image"
+                         src="https://www.mystipendium.de/sites/default/files/styles/width_1003/public/images/bewerbung/nachhilfe_geben.jpg?itok=DntH9A84"
+                         alt="Students tutoring">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-content">
+                    <h1 class="about-title">MyTutor</h1>
+                    <p class="about-description">MyTutor is a specialized platform designed to facilitate connections
+                        between students seeking academic support and qualified peer tutors eager to share their
+                        expertise.</p>
+                    <a class="btn-action primary" th:href="@{/home}">
+                        <i class="fas fa-search"></i> Find your tutor now!
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission Statement Section -->
+    <div class="mission-section">
+        <div class="mission-content">
+            <i class="fas fa-graduation-cap mission-icon"></i>
+            <p class="mission-text">We specialize in facilitating academic connections across mathematics, informatics,
+                and data science disciplines.</p>
+        </div>
+    </div>
+
+    <!-- Subject Cards Section -->
+    <div class="subjects-section" style="border: 2px solid #ff001e;">
+        <h2 class="section-title" style="border: 2px solid #ffd500;">Our Tutoring Areas</h2>
+
+        <div class="row" style="border: 2px solid #0004ff;">     <!-- VB row not found in the css-->
 
 
-</html>
+            <div class="col-md-4 mb-4" style="border: 2px solid #48ff00;">
+                <div class="subject-card" style="border: 2px solid #ffcc00;">
+                    <div class="subject-icon" style="border: 2px solid #ff4d00;">
+                        <i class="fas fa-square-root-alt"></i>
+                    </div>
+
+                    <h3 class="subject-title">Mathematics</h3>
+                    <p class="subject-description">Mathematics is the foundational discipline that explores number,
+                        quantity, and space through rigorous analytical frameworks. It provides powerful tools for
+                        identifying patterns, analyzing structures, and modeling changes in the physical world through
+                        systematic logical reasoning and precise quantitative methods.</p>
+                    <a href="https://en.wikipedia.org/wiki/Mathematics" class="subject-link" target="_blank">
+                        Learn more <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-4 mb-4">
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+
+                    <h3 class="subject-title">Informatics</h3>
+                    <p class="subject-description">Informatics is the interdisciplinary study of information processing,
+                        management, and dissemination, encompassing the design, implementation, and evaluation of
+                        computational systems and their impact on society.</p>
+                    <a href="https://en.wikipedia.org/wiki/Informatics" class="subject-link" target="_blank">
+                        Learn more <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+
+                    <h3 class="subject-title">Data Science</h3>
+                    <p class="subject-description">Data science is the multidisciplinary field that combines statistical
+                        analysis, machine learning, and domain expertise to extract insights and knowledge from
+                        structured and unstructured data.</p>
+                    <a href="https://en.wikipedia.org/wiki/Data_science" class="subject-link" target="_blank">
+                        Learn more <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>

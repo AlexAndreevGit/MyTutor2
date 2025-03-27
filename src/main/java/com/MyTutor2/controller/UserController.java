@@ -75,10 +75,17 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/about-us")
-    public String aboutUs(){
-        return "about-us";
+    @GetMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "login";
     }
+
+
+//    @GetMapping("/about-us")
+//    public String aboutUs(){
+//        return "about-us";
+//    }
 
     @RequestMapping(value = "/my-information", method = RequestMethod.GET)
     public String myInformation(@AuthenticationPrincipal UserDetails userDetails, Model model){
@@ -98,7 +105,7 @@ public class UserController {
         try{
             averagePriceEUR = exRateService.convert("BGN","EUR",BigDecimal.valueOf(averagePriceBGN));
         }catch(Exception e){
-            System.out.println("It is not possible to calculate the average price.");
+            System.out.println("It is not possible to calculate the average price.");  //TODO throw my exception ?
         }
 
         model.addAttribute("userName",logedInUser.getName());
