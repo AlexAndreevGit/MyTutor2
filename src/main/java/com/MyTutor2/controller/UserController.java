@@ -71,7 +71,16 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login(Model model){
+
+        UserLogInDTO userLogInDTO=new UserLogInDTO();
+        userLogInDTO.setUsername("user1");
+        userLogInDTO.setPassword("12345");
+
+        model.addAttribute("userLogInDTO",userLogInDTO);
+
+
+
         return "login";
     }
 
