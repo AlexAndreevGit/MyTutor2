@@ -2,29 +2,28 @@
 # MyTutor2
 ![Image](https://github.com/user-attachments/assets/96e6aa36-4bfc-45f9-8b6e-95990dd91976)
 
+## About
+MyTutor2 is a web platform that connects tutors and students in the fields of Mathematics, Informatics, and Data Science. Our mission is to create an marketplace where knowledge experts can offer their services and students can find the educational support they need.
 
-## Overvie
+## Key Features
+- **User Registration & Authentication** - Secure account creation and login system
+- **Tutoring Offer Management** - Post, edit, and manage tutoring offers across multiple disciplines
+- **Advanced Search** - Find relevant tutoring opportunities
+- **User Dashboard** - Control personal information
+- **Responsive Design** - Optimized experience across desktop and mobile devices
 
-*MyTutor is a web platform where users can post and search for tutoring offers in various subjects like Mathematics, Informatics, and more.* 
-<br>
-*Whether you're a tutor looking to share your expertise or a student seeking help, MyTutor connects learners and educators in an easy and efficient way.*
+## Technology Stack
+MyTutor2 is built using modern technologies:
 
-## Technologies
-* Java
-* Spring
-* SQL
-* HTML, CSS
-* Thymeleaf
-* Restfull & API
+- **Backend**
+    - Java
+    - Spring Framework
+    - SQL database
 
-## Features
-
-* Registration
-* Log-In
-* Creatin of a new Tutoring offer in Mathematics, Informatics or Datascience.
-* Search for an existing tutoring offer in Mathematics, Informatics or Datascience
-* Control your personal ingormation
-* Log-out
+- **Frontend**
+    - HTML & CSS
+    - Thymeleaf template engine
+    - Responsive design principles
 
 ## Entity Relationship Diagram (ERD)
 ![Image](https://github.com/user-attachments/assets/635ad614-5884-4e3f-8ada-55e9112925a8)
