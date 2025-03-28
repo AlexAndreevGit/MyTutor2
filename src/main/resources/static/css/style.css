@@ -786,12 +786,12 @@ body {
     margin-bottom: 3rem;
     width: 100%;
     max-width: 1000px;
-    max-height: 570px;
+    max-height: 70vh;
 }
 
 
 .offers-list {
-    max-height: 45vh; /* 45% of the view port height */
+    max-height: 50vh; /* 45% of the view port height */
     overflow-y: auto;
     padding: 0.5rem;
     /* Scrollbar styling for Webkit browsers */
@@ -1230,7 +1230,7 @@ body {
 }
 
 .offers-container {
-    max-height: 40vh;
+    /*max-height: 40vh;*/
     overflow-y: auto;
     padding-right: 0.5rem;
     /* Scrollbar styling */
