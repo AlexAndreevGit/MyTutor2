@@ -103,16 +103,16 @@ public class UserController {
 
         List<TutorialViewDTO> submittedByMeTutorialsAsView = tutoringService.findAllTutoringOffersByUserId(logedInUser.getId());
 
-        double averagePriceBGN = submittedByMeTutorialsAsView.stream()
+        double averagePriceEU = submittedByMeTutorialsAsView.stream()
                 .mapToDouble(TutorialViewDTO::getPrice)
                 .average()
                 .orElse(0.0);
 
-        BigDecimal averagePriceEUR = BigDecimal.ZERO;
+        BigDecimal averagePriceBGN = BigDecimal.ZERO;
 
         //ExceptionHandling
         try{
-            averagePriceEUR = exRateService.convert("BGN","EUR",BigDecimal.valueOf(averagePriceBGN));
+            averagePriceBGN = exRateService.convert("EUR","BGN",BigDecimal.valueOf(averagePriceEU));
         }catch(Exception e){
             System.out.println("It is not possible to calculate the average price.");  //TODO throw my exception ?
         }
@@ -124,8 +124,8 @@ public class UserController {
 
         DecimalFormat df = new DecimalFormat("#.00");
 
+        model.addAttribute("averagePriceEUR", df.format(averagePriceEU));
         model.addAttribute("averagePriceBGN", df.format(averagePriceBGN));
-        model.addAttribute("averagePriceEUR", df.format(averagePriceEUR));
 
 
 

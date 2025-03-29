@@ -39,6 +39,19 @@
             <div class="stat-card">
 
                 <div class="stat-icon">
+                    <i class="fas fa-euro-sign"></i>
+                </div>
+
+                <div class="stat-content">
+                    <h3 class="stat-value" th:text="${averagePriceEUR} + ' EU'"></h3>
+                    <p class="stat-label">Avg. Price (EUR)</p>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
                     <i class="fas fa-money-bill-wave"></i>
                 </div>
 
@@ -49,18 +62,7 @@
 
             </div>
 
-            <div class="stat-card">
 
-                <div class="stat-icon">
-                    <i class="fas fa-euro-sign"></i>
-                </div>
-
-                <div class="stat-content">
-                    <h3 class="stat-value" th:text="${averagePriceEUR} + ' Leva'"></h3>
-                    <p class="stat-label">Avg. Price (EUR)</p>
-                </div>
-
-            </div>
 
         </div>
 
@@ -71,12 +73,14 @@
                     <i class="fas fa-clipboard-list me-2"></i>
                     My Tutoring Offers
                 </h2>
+
                 <a href="/tutorials/add" class="btn-action secondary">
                     <i class="fas fa-plus-circle"></i> Add New Offer
                 </a>
+
             </div>
 
-            <div class="offers-container">
+            <div class="offers-list">
                 <div th:each="w:${submittedByMeTutorialsAsView}" th:object="${w}" class="user-offer-card">
 
 
@@ -84,7 +88,7 @@
                         <h3 class="offer-name" th:text="*{name}"></h3>
                         <div class="offer-price">
                             <span th:text="*{price}"></span>
-                            <span class="price-currency">BGN</span>
+                            <span class="price-currency">EUR</span>
                         </div>
                     </div>
 
