@@ -1575,3 +1575,34 @@ body {
         }
     }
 }
+
+.advertisement1 {
+    position: fixed;
+    right: 10px;
+    top: 247px;
+    width: 300px;
+    border: 1px solid #ddd;
+    background-color: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 2rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-md);
+}
+
+.advertisement2 {
+    position: fixed;
+    right: 10px;
+    top: 420px;
+    /*margin-top: 1rem;*/
+    width: 300px;
+    border: 1px solid #ddd;
+    background-color: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 2rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-md);
+}
+
+.rounded-image {
+    border-radius: var(--radius-md);
+}

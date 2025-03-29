@@ -19,6 +19,7 @@
             <p class="offers-subtitle">Find tutoring services for mathematical topics</p>
         </div>
 
+
         <div class="offers-list-container">
             <div class="offers-list">
                 <div th:each="w:${informaticsTutorialsAsView}" th:object="${w}" class="offer-card">
@@ -33,16 +34,16 @@
                             </div>
                         </div>
 
-                        <div class="offer-body" >
+                        <div class="offer-body">
                             <p class="offer-description" th:text="*{description}"></p>
                         </div>
 
-                        <div class="offer-footer" >
+                        <div class="offer-footer">
                             <div class="offer-tutor">
                                 <i class="fas fa-user-graduate me-2"></i>
                                 <a href="#" class="tutor-email" th:text="*{emailOfTheTutor}"></a>
                             </div>
-                            <a href="#" class="btn-contact">Contact Tutor</a>
+                            <!--                            <a href="#" class="btn-contact">Contact Tutor</a>-->
                         </div>
 
                     </div>
@@ -59,12 +60,20 @@
             </div>
 
         </div>
-
-
     </div>
 
+    <div class="advertisement1">
+        <h2 class="offer-title">Advertisement</h2>
+        <p>Place your ad here!</p>
+    </div>
+
+    <div class="advertisement2">
+        <img src="/images/sparkasse.png" alt="Sparkasse Advertisement" class="rounded-image" style="width: 100%;">
+    </div>
 
 </main>
+
+
 
 </body>
 </html>
