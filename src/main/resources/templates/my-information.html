@@ -8,7 +8,7 @@
 
 <header th:replace="fragments/commons::nav"></header>
 
-<main class="container py-4" >
+<main class="container py-4">
     <div class="profile-container">
 
         <div class="profile-header">
@@ -62,8 +62,6 @@
 
             </div>
 
-
-
         </div>
 
         <div class="offers-list-container">
@@ -97,12 +95,12 @@
                     </div>
 
                     <div class="offer-actions">
-                        <a class="btn-edit" href="#">
-                            <i class="fas fa-pencil-alt"></i> Edit
-                        </a>
+<!--                        <a class="btn-edit" href="#">-->
+<!--                            <i class="fas fa-pencil-alt" style="margin-right: 8px;"></i> Edit-->
+<!--                        </a>-->
 
                         <a class="btn-delete" th:href="@{/tutorials/remove/{id}(id = *{id})}">
-                            <i class="fas fa-trash-alt"></i> Remove
+                            <i class="fas fa-trash-alt" style="margin-right: 8px;"></i> Remove
                         </a>
                     </div>
 
@@ -118,49 +116,19 @@
             </div>
         </div>
 
+        <div class="div-home" style="display: flex; align-items: center; padding: 1rem 1rem;">
+            <p class="subject-description" style="padding-top: 1.2rem">Account termination is permanent and cannot be
+                undone.</p>
 
-        <!--    <div class="container bg-blur rounded mt-1 mb-2">-->
+            <form th:action="@{/users/delete-account}" th:method="post" style="margin: 0;">
+                <button type="submit" class="button-delete-account"
+                        onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.')">
+                    <i class="fas fa-trash-alt" style="margin-right: 8px;"></i> Delete account
+                </button>
+            </form>
 
-        <!--        <div class="row ">-->
+        </div>
 
-        <!--            <div class="col-12 mt-1 mb-1">-->
-        <!--                <div>-->
-
-        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Username: ${userName}|"></h3>-->
-        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Email: ${userEmail}|"></h3>-->
-        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Number of classes: ${numberOfClasses}|+' Classes'"></h3>-->
-        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Average Price all classes in BGN: ${averagePriceBGN}|+' Leva'"></h3>-->
-        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2 text-left rounded" th:text="|Average Price all classes in EUR: ${averagePriceEUR}|+' Leva'"></h3>-->
-
-        <!--                </div>-->
-
-        <!--            </div>-->
-
-        <!--            <div class="col-12 mt-1 mb-1">-->
-        <!--                <div>-->
-        <!--                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2" >Offers submitted by me:</h3>-->
-        <!--                    <div class="bg-dark rounded m-auto" style="height: 50vh; overflow: auto">-->
-        <!--                        <table class="table table-striped table-dark">-->
-        <!--                            <div th:each="w: ${submittedByMeTutorialsAsView}" th:object="${w}" class="mt-3 rounded badge-warning">-->
-
-        <!--                                <span class="badge bg-primary">Offer name: </span> <span th:text="*{name}" />-->
-        <!--                                <br>-->
-        <!--                                <span class="badge bg-primary">Offer description: </span> <span class="limited-span" th:text="*{description}" /> </span>-->
-        <!--                                <br>-->
-        <!--                                <span class="badge bg-primary">Price per hoer (BGN): </span> <span th:text="*{price}" />-->
-        <!--                                <br>-->
-        <!--                                <a class="ml-3 text-danger" th:href="@{/tutoriels/remove/{id}(id = *{id})}">Remove</a>-->
-
-        <!--                            </div>-->
-
-        <!--                        </table>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-
-        <!--            </div>-->
-
-        <!--        </div>-->
-        <!--    </div>-->
     </div>
 </main>
 

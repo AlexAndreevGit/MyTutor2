@@ -8,14 +8,19 @@ import com.MyTutor2.repo.UserRepository;
 import com.MyTutor2.service.ExRateService;
 import com.MyTutor2.service.TutoringService;
 import com.MyTutor2.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -91,11 +96,6 @@ public class UserController {
     }
 
 
-//    @GetMapping("/about-us")
-//    public String aboutUs(){
-//        return "about-us";
-//    }
-
     @RequestMapping(value = "/my-information", method = RequestMethod.GET)
     public String myInformation(@AuthenticationPrincipal UserDetails userDetails, Model model){
 
@@ -131,6 +131,31 @@ public class UserController {
 
         return "my-information";
 
+    }
+
+
+    @PostMapping("/delete-account")
+    public String deleteAccount(@AuthenticationPrincipal UserDetails userDetails,
+                                HttpServletRequest request,    //is used to get the current user's request
+                                HttpServletResponse response){  //is used to get the current user's response
+
+        User logedInUser= userRepository.findByUsername(userDetails.getUsername()).orElse(null);
+
+        userService.deleteUser(logedInUser);
+
+        //--- logout ---
+
+        //get the current user's authentication
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        //securityContextLogoutHandler is used to log out the current user
+        SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();  //
+
+        if (authentication != null) {
+            securityContextLogoutHandler.logout(request, response, authentication);
+        }
+
+        return "redirect:/";
     }
 
 

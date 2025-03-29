@@ -73,7 +73,7 @@ public class HomeController {
     }
 
 
-    @GetMapping(value={"/home", "/"})   //aan "/home", "/"}
+    @GetMapping(value={"/home", "/"})   //the statistics method should handle GET requests from both /home and /
     public String statistics(Model model) {
 
         List<TutoringOffer> countInformaticsTutorials = tutoringRepository.findAllByCategoryId(2L);
