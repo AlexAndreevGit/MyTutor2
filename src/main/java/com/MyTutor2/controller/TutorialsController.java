@@ -2,24 +2,28 @@ package com.MyTutor2.controller;
 
 
 import com.MyTutor2.model.DTOs.TutorialAddDTO;
-import com.MyTutor2.service.TutoringService;
+import com.MyTutor2.model.DTOs.TutorialViewDTO;
+import com.MyTutor2.service.TutorialsService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import jakarta.validation.Valid;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 
 @Controller
 @RequestMapping("/tutorials")
 public class TutorialsController {
 
-    private TutoringService tutoringService;
+    private TutorialsService tutorialsService;
 
-    public TutorialsController(TutoringService tutoringService) {
-        this.tutoringService = tutoringService;
+    public TutorialsController(TutorialsService tutorialsService) {
+        this.tutorialsService = tutorialsService;
     }
 
     @GetMapping("/add")
@@ -55,16 +59,59 @@ public class TutorialsController {
 
         String userName = userDetails.getUsername();
 
-        tutoringService.addTutoringOffer(tutorialAddDTO,userName);
+        tutorialsService.addTutoringOffer(tutorialAddDTO,userName);
 
         return "redirect:/";
+    }
+
+    @GetMapping("/info")
+    public String informaticsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+
+        if (userDetails == null) {
+            return "/";
+        }
+
+        List<TutorialViewDTO> informaticsTutorialsAsView = tutorialsService.findAllByCategoryID(2L);
+
+        model.addAttribute("informaticsTutorialsAsView", informaticsTutorialsAsView);
+
+        return "tutorialsInformatics";
+
+    }
+
+    @GetMapping("/math")
+    public String mathematicsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {  //SpringSecurity_8  Use @AuthenticationPrincipal
+
+        if (userDetails == null) {
+            return "/";
+        }
+
+        List<TutorialViewDTO> mathematicsTutorialsAsView = tutorialsService.findAllByCategoryID(1L);
+        model.addAttribute("mathematicsTutorialsAsView", mathematicsTutorialsAsView);
+
+        return "tutorialsMathematics";
+
+    }
+
+    @GetMapping("/data")
+    public String datascienceOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+
+        if (userDetails == null) {
+            return "/";
+        }
+
+        List<TutorialViewDTO> datascienceTutorialsAsView = tutorialsService.findAllByCategoryID(3L);
+        model.addAttribute("datascienceTutorialsAsView", datascienceTutorialsAsView);
+
+        return "tutorialsDatascience";
+
     }
 
 
     @GetMapping("/remove/{id}")    // <a class="ml-3 text-danger" th:href="@{/tutoriels/remove/{id}(id = *{id})}">Remove</a>
     public String remove(@PathVariable Long id){
 
-        tutoringService.removeOfferById(id);
+        tutorialsService.removeOfferById(id);
 
         return "redirect:/home";
     }
