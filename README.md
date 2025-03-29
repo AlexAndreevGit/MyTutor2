@@ -1,6 +1,6 @@
 
 # MyTutor2
-![Image](https://github.com/user-attachments/assets/96e6aa36-4bfc-45f9-8b6e-95990dd91976)
+![Image](https://github.com/user-attachments/assets/b581cf6c-34e2-4da4-ada4-e763a72a7b5b)
 
 
 ## Overvie
