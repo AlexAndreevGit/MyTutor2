@@ -7,11 +7,10 @@ import com.MyTutor2.model.entity.UserRoleEntity;
 import com.MyTutor2.repo.TutoringRepository;
 import com.MyTutor2.repo.UserRepository;
 import com.MyTutor2.repo.UserRoleRepository;
-import com.MyTutor2.service.TutoringService;
+import com.MyTutor2.service.TutorialsService;
 import com.MyTutor2.service.UserService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.PersistenceContexts;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,19 +33,19 @@ public class UserServiceImpl implements UserService {
     private ModelMapper modelMapper;
     private PasswordEncoder passwordEncoder;
     private UserRoleRepository userRoleRepository;
-    private TutoringService tutoringService;
+    private TutorialsService tutorialsService;
     private TutoringRepository tutoringRepository;
 
     private final Logger LOGGER = LoggerFactory.getLogger(ExRateServiceImpl.class);
 
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder,
                            UserRoleRepository userRoleRepository,
-                           TutoringService tutoringService, EntityManager entityManager,TutoringRepository tutoringRepository) {
+                           TutorialsService tutorialsService, EntityManager entityManager, TutoringRepository tutoringRepository) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.userRoleRepository = userRoleRepository;
-        this.tutoringService = tutoringService;
+        this.tutorialsService = tutorialsService;
         this.entityManager = entityManager;
         this.tutoringRepository = tutoringRepository;
     }
@@ -74,11 +73,11 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(User logedInUser) {
 
         //delete all tutoring offers associated with this user
-        List<TutorialViewDTO> submittedByMeTutorialsAsView = tutoringService.findAllTutoringOffersByUserId(logedInUser.getId());
+        List<TutorialViewDTO> submittedByMeTutorialsAsView = tutorialsService.findAllTutoringOffersByUserId(logedInUser.getId());
 
         //delete all offers associated with this user
         for (TutorialViewDTO tutorialViewDTO : submittedByMeTutorialsAsView) {
-            tutoringService.removeOfferById(tutorialViewDTO.getId());
+            tutorialsService.removeOfferById(tutorialViewDTO.getId());
         }
 
 

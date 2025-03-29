@@ -5,7 +5,7 @@ import com.MyTutor2.model.DTOs.TutorialViewDTO;
 
 import java.util.List;
 
-public interface TutoringService {
+public interface TutorialsService {
 
     List<TutorialViewDTO> findAllByCategoryID(Long id);
 

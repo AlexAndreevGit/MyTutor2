@@ -10,7 +10,7 @@ import com.MyTutor2.model.enums.CategoryNameEnum;
 import com.MyTutor2.repo.CategoryRepository;
 import com.MyTutor2.repo.TutoringRepository;
 import com.MyTutor2.repo.UserRepository;
-import com.MyTutor2.service.impl.TutoringServiceImpl;
+import com.MyTutor2.service.impl.TutorialsServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +28,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class TutoringServiceImplTest {
+public class TutorialsServiceImplTest {
 
     @Mock
     private TutoringRepository tutoringRepository;
@@ -43,7 +43,7 @@ public class TutoringServiceImplTest {
     private ModelMapper modelMapper;
 
     @InjectMocks
-    private TutoringServiceImpl tutoringService;
+    private TutorialsServiceImpl tutoringService;
 
     private TutorialAddDTO tutorialAddDTO;
     private User user;

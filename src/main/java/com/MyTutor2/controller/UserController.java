@@ -6,7 +6,7 @@ import com.MyTutor2.model.DTOs.UserRegisterDTO;
 import com.MyTutor2.model.entity.User;
 import com.MyTutor2.repo.UserRepository;
 import com.MyTutor2.service.ExRateService;
-import com.MyTutor2.service.TutoringService;
+import com.MyTutor2.service.TutorialsService;
 import com.MyTutor2.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -32,13 +32,13 @@ public class UserController {
 
     private UserService userService;
     private UserRepository userRepository;
-    private TutoringService tutoringService;
+    private TutorialsService tutorialsService;
     private ExRateService exRateService;
 
-    public UserController(UserService userService, UserRepository userRepository, TutoringService tutoringService, ExRateService exRateService) {
+    public UserController(UserService userService, UserRepository userRepository, TutorialsService tutorialsService, ExRateService exRateService) {
         this.userService = userService;
         this.userRepository = userRepository;
-        this.tutoringService = tutoringService;
+        this.tutorialsService = tutorialsService;
         this.exRateService = exRateService;
     }
 
@@ -101,7 +101,7 @@ public class UserController {
 
         User logedInUser= userRepository.findByUsername(userDetails.getUsername()).orElse(null);
 
-        List<TutorialViewDTO> submittedByMeTutorialsAsView = tutoringService.findAllTutoringOffersByUserId(logedInUser.getId());
+        List<TutorialViewDTO> submittedByMeTutorialsAsView = tutorialsService.findAllTutoringOffersByUserId(logedInUser.getId());
 
         double averagePriceEU = submittedByMeTutorialsAsView.stream()
                 .mapToDouble(TutorialViewDTO::getPrice)

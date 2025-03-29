@@ -8,18 +8,17 @@ import com.MyTutor2.model.entity.User;
 import com.MyTutor2.repo.CategoryRepository;
 import com.MyTutor2.repo.TutoringRepository;
 import com.MyTutor2.repo.UserRepository;
-import com.MyTutor2.service.TutoringService;
+import com.MyTutor2.service.TutorialsService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TutoringServiceImpl implements TutoringService {
+public class TutorialsServiceImpl implements TutorialsService {
 
     private TutoringRepository tutoringRepository;
     private ModelMapper modelMapper;
@@ -28,7 +27,7 @@ public class TutoringServiceImpl implements TutoringService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(ExRateServiceImpl.class);  //initialise a logger to log messages
 
-    public TutoringServiceImpl(TutoringRepository tutoringRepository, ModelMapper modelMapper, UserRepository userRepository, CategoryRepository categoryRepository) {
+    public TutorialsServiceImpl(TutoringRepository tutoringRepository, ModelMapper modelMapper, UserRepository userRepository, CategoryRepository categoryRepository) {
         this.tutoringRepository = tutoringRepository;
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
