@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="container py-4">
+    <div class="offers-container">
+        <div class="offers-header">
+            <h1 class="offers-title">
+                Python Questions
+            </h1>
+            <p class="offers-subtitle">Python questions from Stack Exchange</p>
+        </div>
+
+        <div class="offers-list-container">
+            <div class="offers-list">
+                <div th:each="w: ${stackExchangeQuestionsAsView}" th:object="${w}" class="offer-card">
+                    <div class="offer-card-content">
+                        <div class="offer-header">
+                            <h3 class="offer-name">
+                                <a th:href="*{url}" target="_blank" th:text="*{title}"></a>
+                            </h3>
+                        </div>
+
+                        <div class="offer-stats" style="display: flex; align-items: center; margin-top: 8px;">
+                            <div style="margin-right: 12px;" title="Views">
+                                <i class="fas fa-eye" style="color: #6c757d; margin-right: 4px;"></i>
+                                <span th:text="*{viewCount}">0</span>
+                            </div>
+                            <div title="Answers">
+                                <i class="fas fa-comment-dots" style="color: #6c757d; margin-right: 4px;"></i>
+                                <span th:text="*{answerCount}">0</span>
+                            </div>
+                        </div>
+                        <div class="offer-description">
+                            <p class="limited-span">Python question from Stack Overflow</p>
+                        </div>
+
+                        <div class="offer-footer" >
+                            <div class="offer-tutor">
+                                <img th:if="*{profileImageUrl != null}" th:src="*{profileImageUrl}" alt="Profile" class="profile-img" style="width: 24px; height: 24px; border-radius: 50%; margin-right: 8px;">
+                                <i th:if="*{profileImageUrl == null}" class="fas fa-user-graduate me-2"></i>
+                                <span class="tutor-name" th:text="*{profileName}"></span>
+                            </div>
+
+                            <a th:href="*{url}" target="_blank" class="btn-contact">View Question</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- If there are no offers, show this message -->
+                <div th:if="${stackExchangeQuestionsAsView.isEmpty()}" class="no-offers">
+                    <i class="fas fa-search fa-3x mb-3"></i>
+                    <h3>No mathematics offers available</h3>
+                    <p>Check back later or explore other subject areas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+
+</body>
+</html>
