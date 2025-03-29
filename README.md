@@ -1,6 +1,6 @@
 
 # MyTutor2
-![Image](https://github.com/user-attachments/assets/96e6aa36-4bfc-45f9-8b6e-95990dd91976)
+![Image](https://github.com/user-attachments/assets/b581cf6c-34e2-4da4-ada4-e763a72a7b5b)
 
 ## About
 MyTutor2 is a web platform that connects tutors and students in the fields of Mathematics, Informatics, and Data Science. Our mission is to create an marketplace where knowledge experts can offer their services and students can find the educational support they need.
