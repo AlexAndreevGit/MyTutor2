@@ -27,28 +27,12 @@ public class HomeController {
         this.userRepository = userRepository;
     }
 
-//    public HomeController(TutoringService tutoringService) {
-//        this.tutoringService = tutoringService;
-//    }
-//
-//    @GetMapping("/")
-//    public String index(@AuthenticationPrincipal UserDetails userDetails) {
-//
-//        if (userDetails == null) {
-//            return "index";
-//        }
-//
-//        return "index";  //TODO home not needed we go to index
-//        //return "home";  //TODO when loged in then we go to home
-//
-//    }
 
 
     @GetMapping("/info")
     public String informaticsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 
         if (userDetails == null) {
-//            return "index";
             return "/";
         }
 
@@ -64,7 +48,6 @@ public class HomeController {
     public String mathematicsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {  //SpringSecurity_8  Use @AuthenticationPrincipal
 
         if (userDetails == null) {
-//            return "index";
             return "/";
         }
 
@@ -79,7 +62,6 @@ public class HomeController {
     public String datascienceOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 
         if (userDetails == null) {
-//            return "index";
             return "/";
         }
 
@@ -90,13 +72,6 @@ public class HomeController {
 
     }
 
-
-//    @GetMapping("/home")
-//    public String indexPage() {
-//
-//        return "index";
-//
-//    }
 
     @GetMapping(value={"/home", "/"})   //aan "/home", "/"}
     public String statistics(Model model) {
