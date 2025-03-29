@@ -5,53 +5,48 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<!--<head>-->
-
-<!--&lt;!&ndash;    TODO  can be replaced so we save code&ndash;&gt;-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-
-<!--    <meta charset="UTF-8"/>-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
-<!--    <title>MyTutor</title>-->
-<!--    <link rel="stylesheet" href="/css/reset-css.css"/>-->
-<!--    <link rel="stylesheet" href="/css/bootstrap.min.css"/>-->
-<!--    <link rel="stylesheet" href="/css/style.css"/>-->
-
-<!--</head>-->
-
 <head th:replace="fragments/commons::head"></head>
 
 <body>
 
 <header th:replace="fragments/commons::nav"></header>
 
-<!--<main>-->
-<!--&lt;!&ndash;    my-2 combines both mt-2 and mb-2&ndash;&gt;-->
-<!--    <div class="container bg-blur rounded my-2">-->
-
-<!--        <div class="row">-->
-
-<!--            <div class="col-12 my-1">-->
-
-<!--                <div class="col-lg-14"><img class="img-fluid rounded " src="https://i0.wp.com/www.news4teachers.de/wp-content/uploads/Nachhilfe-2-e1553855249652.jpg?resize=696%2C464&ssl=1" alt="..."></div>-->
-<!--                <br>-->
-<!--                <h3 class="mySticky bg-gray text-dark " >Chose your subject from the buttons above.</h3>-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</main>-->
-
-
 <main class="container py-4">
-    <div class="stats-container">
-        <div class="stats-header">
-            <div class="stats-icon">
-                <i class="fas fa-chart-bar"></i>
+
+
+    <div class="div-home" >
+        <div class="stats-header-home">
+            <h1 class="main-title">Welcome to MyTutor</h1>
+        </div>
+
+        <div class="div-home-two-boxes" >
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-solid fa-book-open"></i>
+                </div>
+                <h3 class="feature-title">Find the perfect tutor for you</h3>
+                <p class="feature-text">Connect with knowledgeable tutors who specialize in Informatics, Mathematics,
+                    and Data Science to help you master challenging concepts.</p>
             </div>
-            <h1 class="stats-title">Platform Statistics</h1>
-            <p class="stats-subtitle">An overview of our tutoring community</p>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3 class="feature-title">Submit your oun tutoring offer</h3>
+                <p class="feature-text">If you already have advanced knowledge in the areas of Informatics, Mathematics,
+                    and Data Science, you can submit your offer and be contacted by other students. </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--    division for the statistics information-->
+    <div class="div-home" >
+        <div class="stats-header">
+            <h1 class="main-title">An overview of our tutoring offers</h1>
         </div>
 
         <div class="stats-dashboard">
@@ -63,7 +58,6 @@
                     <h3 class="stat-value" th:text="${countInformaticsTutorials}"></h3>
                     <p class="stat-label">Informatics Offers</p>
                 </div>
-                <div class="stat-chart informatics-chart"></div>
             </div>
 
             <div class="stat-card">
@@ -74,7 +68,6 @@
                     <h3 class="stat-value" th:text="${countMathematicsTutorials}"></h3>
                     <p class="stat-label">Mathematics Offers</p>
                 </div>
-                <div class="stat-chart math-chart"></div>
             </div>
 
             <div class="stat-card">
@@ -85,19 +78,8 @@
                     <h3 class="stat-value" th:text="${countDatascienceTutorials}"></h3>
                     <p class="stat-label">Data Science Offers</p>
                 </div>
-                <div class="stat-chart datascience-chart"></div>
             </div>
 
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="stat-content">
-                    <h3 class="stat-value" th:text="${countAllUsers}"></h3>
-                    <p class="stat-label">Registered Tutors</p>
-                </div>
-                <div class="stat-chart tutors-chart"></div>
-            </div>
         </div>
 
         <!-- Optional: Total Stats Summary -->
@@ -105,10 +87,12 @@
             <div class="summary-content">
                 <h3 class="summary-title">
                     <i class="fas fa-graduation-cap me-2"></i>
-                    Total Tutoring Offers
+                    Total Tutoring Offers:
+                    <span class="sum-tutoring-offers"
+                          th:text="${countInformaticsTutorials + countMathematicsTutorials + countDatascienceTutorials}">
+                    </span>
                 </h3>
-                <p class="summary-value"
-                   th:text="${countInformaticsTutorials + countMathematicsTutorials + countDatascienceTutorials}"></p>
+
             </div>
             <div class="summary-chart">
                 <div class="chart-segment informatics"
@@ -134,10 +118,62 @@
             </div>
         </div>
     </div>
+
+    <div class="div-home" >
+
+        <h1 class="main-title" style="text-align: center">Get Started Today</h1>
+
+        <p class="feature-text" style="text-align: center">Join our tutoring platform to find expert help or offer your teaching
+            services.</p>
+
+        <div class="picture-section-actions" >
+
+            <a href="/users/login" class="btn-login">
+                <i class="fas fa-sign-in-alt nav-icon"></i> Login
+            </a>
+
+            <a href="/users/register" class="btn-register">
+                <i class="fas fa-user-plus nav-icon"></i> Register
+            </a>
+
+        </div>
+    </div>
+
 </main>
 
 
-<!--<footer th:replace="fragments/commons::footer"></footer>-->
+<footer class="modern-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <h4 class="footer-title">MyTutor</h4>
+                <p class="footer-text">MyTutor connects students in need of tutoring with peers ready to share their
+                    knowledge and skills.</p>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Services</h4>
+                <ul class="footer-links">
+                    <p class="footer-text">Submit a tutoring offer</p>
+                    <p class="footer-text">Find your perfect tutor</p>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> Berlin, Ribbeckerstr 30 10319</li>
+                    <li><i class="fas fa-envelope"></i> MyTutorInfo@gmail.com</li>
+                    <li><i class="fas fa-phone"></i> + 01 264 163 38</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 MyTutor. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 
 
 </body>

@@ -204,7 +204,7 @@
     display: flex;
     gap: 1rem;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 /* ---------------------------------------------- Home end ----------------------------------------------- */
 
@@ -358,6 +358,13 @@ body {
     margin-bottom: 3rem;
 }
 
+.div-home-two-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
 .feature-card {
     background-color: var(--surface);
     border-radius: var(--radius-md);
@@ -395,7 +402,7 @@ body {
     background-color: #1e293b;
     color: #e2e8f0;
     padding: 3rem 0 1rem;
-    margin-top: 2rem;
+    /*margin-top: 1rem;*/
 }
 
 
@@ -415,7 +422,7 @@ body {
 
 .footer-text {
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.7rem;
     color: #cbd5e1;
 }
 
@@ -483,7 +490,15 @@ body {
 .about-hero {
     background-color: var(--surface);
     border-radius: var(--radius-md);
-    padding: 3rem 2rem;
+    padding: 2rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-md);
+}
+
+.div-home {
+    background-color: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 2rem 2rem;
     margin-bottom: 3rem;
     box-shadow: var(--shadow-md);
 }
@@ -1261,6 +1276,11 @@ body {
 }
 
 /* Stats Header */
+.stats-header-home {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
 .stats-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -1285,6 +1305,13 @@ body {
 }
 
 .stats-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.main-title {
     font-size: 2.25rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -1370,7 +1397,6 @@ body {
     background: linear-gradient(90deg, var(--primary), var(--accent));
     -webkit-background-clip: text; /* so the background is visible through the icons parts */
     -webkit-text-fill-color: transparent; /* so the background is visible through the icons parts */
-    margin: 0;
 }
 
 .summary-chart {
@@ -1434,7 +1460,6 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin: 0;
     display: flex;
     align-items: center;
 }
@@ -1450,7 +1475,15 @@ body {
     background: linear-gradient(90deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 0;
+}
+
+.sum-tutoring-offers {
+    font-size: 2.1rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 12px;
 }
 
 .summary-chart {
@@ -1493,8 +1526,8 @@ body {
 }
 
 .legend-color {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     border-radius: 3px;
     display: inline-block;
     margin-right: 0.5rem;
@@ -1513,7 +1546,7 @@ body {
 }
 
 .legend-label {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-secondary);
 }
 
