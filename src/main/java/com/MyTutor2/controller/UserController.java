@@ -85,13 +85,13 @@ public class UserController {
         model.addAttribute("userLogInDTO",userLogInDTO);
 
 
-
         return "login";
     }
 
     @GetMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
+
         return "login";
     }
 
