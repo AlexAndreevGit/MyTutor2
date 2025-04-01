@@ -1,7 +1,6 @@
 package com.MyTutor2.controller;
 
 
-import com.MyTutor2.model.DTOs.StackExchangeQuestionDTO;
 import com.MyTutor2.model.DTOs.TutorialAddDTO;
 import com.MyTutor2.model.DTOs.TutorialViewDTO;
 import com.MyTutor2.service.TutorialsService;
@@ -65,14 +64,6 @@ public class TutorialsController {
         return "redirect:/";
     }
 
-    // Docs: https://api.stackexchange.com/
-    @GetMapping("/stack-exchange")
-    public String courseraOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-        List<StackExchangeQuestionDTO> tutorials = tutorialsService.getPythonQuestions();
-        model.addAttribute("stackExchangeQuestionsAsView", tutorials);
-
-        return "tutorialsStackExchange";
-    }
 
     @GetMapping("/info")
     public String informaticsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {

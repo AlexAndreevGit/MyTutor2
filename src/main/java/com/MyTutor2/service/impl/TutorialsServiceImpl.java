@@ -1,6 +1,5 @@
 package com.MyTutor2.service.impl;
 
-import com.MyTutor2.model.DTOs.StackExchangeQuestionDTO;
 import com.MyTutor2.model.DTOs.TutorialAddDTO;
 import com.MyTutor2.model.DTOs.TutorialViewDTO;
 import com.MyTutor2.model.entity.Category;
@@ -64,55 +63,6 @@ public class TutorialsServiceImpl implements TutorialsService {
         return listOfViewOffers;
     }
 
-    @Override
-    public List<StackExchangeQuestionDTO> getPythonQuestions() {
-
-        String url = "https://api.stackexchange.com/2.3/search/advanced?order=desc&sort=activity&tagged=python&site=stackoverflow";
-
-        var response = restClient.get()
-                .uri(url)
-                .retrieve()
-                .body(Map.class);
-
-        List<Map<String, Object>> items = (List<Map<String, Object>>) response.get("items");
-
-        List<StackExchangeQuestionDTO> questions = new ArrayList<>();
-
-        for (Map<String, Object> item : items) {
-            StackExchangeQuestionDTO question = new StackExchangeQuestionDTO();
-
-            // Set title from the question title
-            question.setTitle((String) item.get("title"));
-
-            // Set url from the question link
-            question.setUrl((String) item.get("link"));
-
-            // Set view count
-            question.setViewCount((Integer) item.get("view_count"));
-
-            // Set answer count
-            question.setAnswerCount((Integer) item.get("answer_count"));
-
-            // Extract owner information for profile name and image
-            if (item.containsKey("owner") && item.get("owner") != null) {
-                Map<String, Object> owner = (Map<String, Object>) item.get("owner");
-
-                // Set profile name
-                if (owner.containsKey("display_name")) {
-                    question.setProfileName((String) owner.get("display_name"));
-                }
-
-                // Set profile image URL
-                if (owner.containsKey("profile_image")) {
-                    question.setProfileImageUrl((String) owner.get("profile_image"));
-                }
-            }
-
-            questions.add(question);
-        }
-
-        return questions;
-    }
 
     @Override
     public void addTutoringOffer(TutorialAddDTO tutorialAddDTO, String userName) {
