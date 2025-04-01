@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "forex.api") // In the prefix we put forex.api from the application.yaml. Then we put "key", "url" and "base" as fields and the values form the .yaml will be injected in the fields
 public class ForexApiConfig {
 
+    //@Value("${forex.api.key}")  plus only @Component on the class
     private String key;
 
     private String url;

@@ -17,6 +17,7 @@ public class HomeController {
     private TutoringRepository tutoringRepository;
     private UserRepository userRepository;
 
+    //constructor injection
     public HomeController(TutoringRepository tutoringRepository, UserRepository userRepository) {
         this.tutoringRepository = tutoringRepository;
         this.userRepository = userRepository;

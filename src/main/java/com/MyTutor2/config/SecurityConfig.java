@@ -27,7 +27,7 @@ public class SecurityConfig {
         return httpSecurity.authorizeHttpRequests(                    //Section 1 -> .authorizeHttpRequests()   setup which URL-s are available for which user
                     authorizeRequests ->                                //with the lambda we explain what is accessible and what not
                             authorizeRequests
-                                    .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() //all static resources(CSS,images, JS) are accessible for everyone
+                                    .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() //all static resources(CSS,images) are accessible for everyone
                                     .requestMatchers("/","/home", "/about-us", "users/login","/users/login-error", "users/register","/api/convert").permitAll()          //accessible for all users
                                     .requestMatchers("/admin/**").hasRole("ADMIN") // Restrict access to /admin/** URLs only for users with the role ARMIN
                                     .anyRequest().authenticated()       //for all other requests, we need an authenticated user.
