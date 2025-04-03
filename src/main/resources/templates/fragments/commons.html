@@ -4,13 +4,15 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>MyTutor</title>
     <link rel="stylesheet" href="/css/reset-css.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css"/>
-
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <!-- Add Inter font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -69,8 +71,8 @@
             </li>
 
             <li class="nav-item" sec:authorize="isAuthenticated()">
-                <a class="nav-link-button" href="/tutorials/data">
-                    <i class="fas fa-chart-line nav-icon"></i> Data Science
+                <a class="nav-link-button" href="/tutorials/other">
+                    <i class="fas fa-chart-line nav-icon"></i> Other subjects
                 </a>
             </li>
 
@@ -84,6 +86,13 @@
             <li class="nav-item" >
                 <a class="nav-link-button" href="/about-us">
                     <i class="fas fa-info-circle nav-icon"></i> About Us
+                </a>
+            </li>
+
+
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link-button" href="/tutorials/ask-question">
+                    <i class="fas fa-robot nav-icon"></i> TutorBot
                 </a>
             </li>
 

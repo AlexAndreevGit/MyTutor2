@@ -3,7 +3,9 @@ package com.MyTutor2.controller;
 
 import com.MyTutor2.model.DTOs.TutorialAddDTO;
 import com.MyTutor2.model.DTOs.TutorialViewDTO;
+import com.MyTutor2.service.OpenAIService;
 import com.MyTutor2.service.TutorialsService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import jakarta.validation.Valid;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,17 +15,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
-@RequestMapping("/tutorials")
+@RequestMapping("/tutorials")   ///tutorials/ask-question
 public class TutorialsController {
 
     private TutorialsService tutorialsService;
+    private OpenAIService openAIService;
 
-    public TutorialsController(TutorialsService tutorialsService) {
+    public TutorialsController(TutorialsService tutorialsService, OpenAIService openAIService) {
         this.tutorialsService = tutorialsService;
+        this.openAIService= openAIService;
     }
 
     @GetMapping("/add")
@@ -64,6 +70,24 @@ public class TutorialsController {
         return "redirect:/";
     }
 
+    @PostMapping("/ask-question")
+    public ResponseEntity<Map<String, Object>> askQuestion(@RequestBody Map<String, String> payload)
+    {
+        Map<String, Object> response = new HashMap<>();
+        String query = payload.get("query");
+
+        String answer = openAIService.askQuestion(query);
+
+        response.put("success", true);
+        response.put("answer", answer);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/ask-question")
+    public String askQuestion() {
+        return "ask-question";
+    }
 
     @GetMapping("/info")
     public String informaticsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
@@ -94,17 +118,17 @@ public class TutorialsController {
 
     }
 
-    @GetMapping("/data")
-    public String datascienceOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+    @GetMapping("/other")
+    public String otherOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 
         if (userDetails == null) {
             return "/";
         }
 
-        List<TutorialViewDTO> datascienceTutorialsAsView = tutorialsService.findAllByCategoryID(3L);
-        model.addAttribute("datascienceTutorialsAsView", datascienceTutorialsAsView);
+        List<TutorialViewDTO> otherTutorialsAsView = tutorialsService.findAllByCategoryID(3L);
+        model.addAttribute("otherTutorialsAsView", otherTutorialsAsView);
 
-        return "tutorialsDatascience";
+        return "tutorialsOther";
 
     }
 
