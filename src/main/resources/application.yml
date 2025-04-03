@@ -50,4 +50,9 @@ forex: #creating a Section
     url: "https://openexchangerates.org/api/latest.json?app_id={app_id}"  #app_id is a placeholder
     base: "USD"
 
-    # the key is configuration as an environment variable under "Edit configuration"
+
+openai:
+  api:
+    key: ${OPENAI-API-KEY:}
+    url: "https://api.openai.com/v1/chat/completions"
+  model: gpt-4o-mini-2024-07-18
