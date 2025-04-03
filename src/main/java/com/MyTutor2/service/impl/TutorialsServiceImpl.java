@@ -1,5 +1,8 @@
 package com.MyTutor2.service.impl;
 
+import com.MyTutor2.Exceptions.CategoryNotFoundException;
+import com.MyTutor2.Exceptions.TutorialNotFoundException;
+import com.MyTutor2.Exceptions.UserNotFoundException;
 import com.MyTutor2.model.DTOs.TutorialAddDTO;
 import com.MyTutor2.model.DTOs.TutorialViewDTO;
 import com.MyTutor2.model.entity.Category;
@@ -53,7 +56,7 @@ public class TutorialsServiceImpl implements TutorialsService {
         List<TutoringOffer> tutoringOffersLogedInUser = tutoringRepository.findAllByAddedById(id);
 
         List<TutorialViewDTO> listOfViewOffers = tutoringOffersLogedInUser.stream()
-                .map(currentOffer-> {
+                .map(currentOffer -> {
                     TutorialViewDTO tutorialViewDTO = modelMapper.map(currentOffer, TutorialViewDTO.class);
                     tutorialViewDTO.setEmailOfTheTutor(currentOffer.getAddedBy().getEmail());
                     return tutorialViewDTO;
@@ -65,15 +68,19 @@ public class TutorialsServiceImpl implements TutorialsService {
 
 
     @Override
-    public void addTutoringOffer(TutorialAddDTO tutorialAddDTO, String userName) {
+    public void addTutoringOffer(TutorialAddDTO tutorialAddDTO, String userName) throws CategoryNotFoundException,UserNotFoundException {
 
         TutoringOffer tutoringOffer = modelMapper.map(tutorialAddDTO, TutoringOffer.class);
 
-        User user = userRepository.findByUsername(userName).get();
+        User user = userRepository.findByUsername(userName).orElseThrow(() -> new UserNotFoundException(userName));
 
         tutoringOffer.setAddedBy(user);
 
         Category category = categoryRepository.findByName(tutorialAddDTO.getCategory());
+
+        if (category == null) {
+            throw new CategoryNotFoundException(tutorialAddDTO.getCategory());
+        }
 
         tutoringOffer.setCategory(category);
 
@@ -84,7 +91,12 @@ public class TutorialsServiceImpl implements TutorialsService {
     }
 
     @Override
-    public void removeOfferById(Long id) {
+    public void removeOfferById(Long id) throws TutorialNotFoundException{
+
+        if (!tutoringRepository.existsById(id)) {
+            throw new TutorialNotFoundException(id);
+        }
+
         tutoringRepository.deleteById(id);
     }
 

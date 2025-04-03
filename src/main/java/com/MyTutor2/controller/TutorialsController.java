@@ -29,7 +29,7 @@ public class TutorialsController {
 
     public TutorialsController(TutorialsService tutorialsService, OpenAIService openAIService) {
         this.tutorialsService = tutorialsService;
-        this.openAIService= openAIService;
+        this.openAIService = openAIService;
     }
 
     @GetMapping("/add")
@@ -44,7 +44,7 @@ public class TutorialsController {
     }
 
 
-//    @Valid TutorialAddDTO tutorialAddDTO - we make a validation. Validate that the submitted input information fulfill the DTO(@Size(), @NotNull, @Positiv ) validation criteria
+    //@Valid TutorialAddDTO tutorialAddDTO - we make a validation. Validate that the submitted input information fulfill the DTO(@Size(), @NotNull, @Positiv ) validation criteria
     @PostMapping("/add")
     public String createTutorial(@AuthenticationPrincipal UserDetails userDetails,  // source: Spring security
                                  @Valid TutorialAddDTO tutorialAddDTO,              // source: HTTP request
@@ -52,7 +52,7 @@ public class TutorialsController {
                                  RedirectAttributes redirectAttributes) {           // source: Spring MVC
 
 
-        //    BindingResult bindingResult - through bindingResult we can access the result(errors) from the validation
+        //BindingResult bindingResult - through bindingResult we can access the result(errors) from the validation
         if (bindingResult.hasErrors()) {
 
             //redirectAttributes will save the information in the DTO and errors for short time
@@ -65,14 +65,13 @@ public class TutorialsController {
 
         String userName = userDetails.getUsername();
 
-        tutorialsService.addTutoringOffer(tutorialAddDTO,userName);
+        tutorialsService.addTutoringOffer(tutorialAddDTO, userName);
 
         return "redirect:/";
     }
 
     @PostMapping("/ask-question")
-    public ResponseEntity<Map<String, Object>> askQuestion(@RequestBody Map<String, String> payload)
-    {
+    public ResponseEntity<Map<String, Object>> askQuestion(@RequestBody Map<String, String> payload) {
         Map<String, Object> response = new HashMap<>();
         String query = payload.get("query");
 
@@ -133,8 +132,9 @@ public class TutorialsController {
     }
 
 
-    @GetMapping("/remove/{id}")    // <a class="ml-3 text-danger" th:href="@{/tutoriels/remove/{id}(id = *{id})}">Remove</a>
-    public String remove(@PathVariable Long id){
+    @GetMapping("/remove/{id}")
+    // <a class="ml-3 text-danger" th:href="@{/tutoriels/remove/{id}(id = *{id})}">Remove</a>
+    public String remove(@PathVariable Long id) {
 
         tutorialsService.removeOfferById(id);
 
