@@ -31,20 +31,20 @@ public class StatisticsController {
     public String statistics(Model model) {
 
 
-        List<TutoringOffer> countInformaticsTutorials = tutoringRepository.findAllByCategoryId(2L);
-
-        List<TutoringOffer> countMathematicsTutorials = tutoringRepository.findAllByCategoryId(1L);
-
-        List<TutoringOffer> countDatascienceTutorials = tutoringRepository.findAllByCategoryId(3L);
+//        List<TutoringOffer> countInformaticsTutorials = tutoringRepository.findAllByCategoryId(2L);
+//
+//        List<TutoringOffer> countMathematicsTutorials = tutoringRepository.findAllByCategoryId(1L);
+//
+//        List<TutoringOffer> countDatascienceTutorials = tutoringRepository.findAllByCategoryId(3L);
 
         List<User> countAllUsers= userRepository.findAll();
 
 
-        model.addAttribute("countInformaticsTutorials", countInformaticsTutorials.size());
-
-        model.addAttribute("countMathematicsTutorials", countMathematicsTutorials.size());
-
-        model.addAttribute("countDatascienceTutorials", countDatascienceTutorials.size());
+//        model.addAttribute("countInformaticsTutorials", countInformaticsTutorials.size());
+//
+//        model.addAttribute("countMathematicsTutorials", countMathematicsTutorials.size());
+//
+//        model.addAttribute("countDatascienceTutorials", countDatascienceTutorials.size());
 
         model.addAttribute("countAllUsers", countAllUsers.size()-1); // minus 1 because we don't count the admin as a user
 

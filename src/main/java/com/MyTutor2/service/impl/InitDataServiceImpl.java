@@ -78,7 +78,7 @@ public class InitDataServiceImpl implements InitDataService {
             // get the categories from the database
             Category categoryMath = categoryRepository.findByName(CategoryNameEnum.MATHEMATICS);
             Category categoryInfo = categoryRepository.findByName(CategoryNameEnum.INFORMATICS);
-            Category categoryData = categoryRepository.findByName(CategoryNameEnum.DATASCIENCE);
+            Category categoryData = categoryRepository.findByName(CategoryNameEnum.OTHER);
 
             //Create mathematics offers
             TutoringOffer tutoringOfferMath1 = new TutoringOffer("Advanced Calculus for STEM Majors", "Deepen your understanding of multivariable calculus, limits, integrals, and series through clear explanations and examples.", 20.0, categoryMath, userRepository.findByUsername("user1").get());
@@ -116,15 +116,15 @@ public class InitDataServiceImpl implements InitDataService {
             TutoringOffer tutoringOfferInfo6 = new TutoringOffer("Operating Systems and Computer Architecture", "Gain insights into processes, memory management, file systems, and how hardware and software interact.", 18.5, categoryInfo, userRepository.findByUsername("user3").get());
             tutoringRepository.save(tutoringOfferInfo6);
 
-            //Create datascience offers
-            TutoringOffer tutoringOfferData1 = new TutoringOffer("Data Visualization and Storytelling", "Create insightful visualizations using tools like Seaborn, Plotly, and Tableau to communicate data-driven findings effectively.", 20.0, categoryData, userRepository.findByUsername("user1").get());
-            tutoringRepository.save(tutoringOfferData1);
+            //Create other offers
+            TutoringOffer tutoringOfferOther1 = new TutoringOffer("Data Visualization and Storytelling", "Create insightful visualizations using tools like Seaborn, Plotly, and Tableau to communicate data-driven findings effectively.", 20.0, categoryData, userRepository.findByUsername("user1").get());
+            tutoringRepository.save(tutoringOfferOther1);
 
-            TutoringOffer tutoringOfferData2 = new TutoringOffer("Introduction to Data Science with Python", "Learn data cleaning, visualization, and analysis using pandas, NumPy, and matplotlib in practical Python projects.", 25.5, categoryData, userRepository.findByUsername("user1").get());
-            tutoringRepository.save(tutoringOfferData2);
+            TutoringOffer tutoringOfferOther2 = new TutoringOffer("Introduction to Data Science with Python", "Learn data cleaning, visualization, and analysis using pandas, NumPy, and matplotlib in practical Python projects.", 25.5, categoryData, userRepository.findByUsername("user1").get());
+            tutoringRepository.save(tutoringOfferOther2);
 
-            TutoringOffer tutoringOfferData3 = new TutoringOffer("Big Data and Cloud Analytics", "Explore Hadoop, Spark, and cloud platforms to process and analyze large-scale data efficiently.", 18.0, categoryData, userRepository.findByUsername("user1").get());
-            tutoringRepository.save(tutoringOfferData3);
+            TutoringOffer tutoringOfferOther3 = new TutoringOffer("Big Data and Cloud Analytics", "Explore Hadoop, Spark, and cloud platforms to process and analyze large-scale data efficiently.", 18.0, categoryData, userRepository.findByUsername("user1").get());
+            tutoringRepository.save(tutoringOfferOther3);
 
         }
 

@@ -14,14 +14,14 @@
 
         <div class="offers-header">
             <h1 class="main-title">
-                Data Science Offers
+                Offers on other subjects
             </h1>
             <p class="offers-subtitle">Find tutoring services for Data Science topics</p>
         </div>
 
         <div class="offers-list-container">
             <div class="offers-list">
-                <div th:each="w:${datascienceTutorialsAsView}" th:object="${w}" class="offer-card">
+                <div th:each="w:${otherTutorialsAsView}" th:object="${w}" class="offer-card">
 
                     <div class="offer-card-content">
                         <div class="offer-header">
@@ -49,7 +49,7 @@
 
                 </div>
 
-                <div th:if="${datascienceTutorialsAsView.isEmpty()}" class="no-off">
+                <div th:if="${otherTutorialsAsView.isEmpty()}" class="no-off">
                     <i class="fas fa-search fa-3x mb-3"></i>
                     <h3>No mathematics offers available</h3>
                     <p>Check back later or explore other subject areas.</p>

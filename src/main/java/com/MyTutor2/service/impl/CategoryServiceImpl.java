@@ -31,7 +31,7 @@ public class CategoryServiceImpl implements CategoryService {
                 case MATHEMATICS:
                     category.setDescription("Mathematics is the abstract science of number, quantity, and space, which can be applied to patterns, structures, and changes in the physical world through logical reasoning and quantitative calculations.");
                     break;
-                case DATASCIENCE:
+                case OTHER:
                     category.setDescription("Data science is the multidisciplinary field that combines statistical analysis, machine learning, and domain expertise to extract insights and knowledge from structured and unstructured data.");
                     break;
                 case INFORMATICS:

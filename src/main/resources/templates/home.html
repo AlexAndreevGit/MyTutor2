@@ -26,7 +26,7 @@
                 </div>
                 <h3 class="feature-title">Find the perfect tutor for you</h3>
                 <p class="feature-text">Connect with knowledgeable tutors who specialize in Informatics, Mathematics,
-                    and Data Science to help you master challenging concepts.</p>
+                    and other disciplines to help you master challenging concepts.</p>
             </div>
 
             <div class="feature-card">
@@ -35,7 +35,7 @@
                 </div>
                 <h3 class="feature-title">Submit your oun tutoring offer</h3>
                 <p class="feature-text">If you already have advanced knowledge in the areas of Informatics, Mathematics,
-                    and Data Science, you can submit your offer and be contacted by other students. </p>
+                    or any other discipline, you can submit your offer and be contacted by other students. </p>
             </div>
 
         </div>
@@ -75,8 +75,8 @@
                     <i class="fas fa-chart-line"></i>
                 </div>
                 <div class="stat-content">
-                    <h3 class="stat-value" th:text="${countDatascienceTutorials}"></h3>
-                    <p class="stat-label">Data Science Offers</p>
+                    <h3 class="stat-value" th:text="${countOtherTutorials}"></h3>
+                    <p class="stat-label">Other Offers</p>
                 </div>
             </div>
 
@@ -89,18 +89,18 @@
                     <i class="fas fa-graduation-cap me-2"></i>
                     Total Tutoring Offers:
                     <span class="sum-tutoring-offers"
-                          th:text="${countInformaticsTutorials + countMathematicsTutorials + countDatascienceTutorials}">
+                          th:text="${countInformaticsTutorials + countMathematicsTutorials + countOtherTutorials}">
                     </span>
                 </h3>
 
             </div>
             <div class="summary-chart">
                 <div class="chart-segment informatics"
-                     th:style="'width:' + ${countInformaticsTutorials * 100 / (countInformaticsTutorials + countMathematicsTutorials + countDatascienceTutorials)} + '%'"></div>
+                     th:style="'width:' + ${countInformaticsTutorials * 100 / (countInformaticsTutorials + countMathematicsTutorials + countOtherTutorials)} + '%'"></div>
                 <div class="chart-segment mathematics"
-                     th:style="'width:' + ${countMathematicsTutorials * 100 / (countInformaticsTutorials + countMathematicsTutorials + countDatascienceTutorials)} + '%'"></div>
+                     th:style="'width:' + ${countMathematicsTutorials * 100 / (countInformaticsTutorials + countMathematicsTutorials + countOtherTutorials)} + '%'"></div>
                 <div class="chart-segment datascience"
-                     th:style="'width:' + ${countDatascienceTutorials * 100 / (countInformaticsTutorials + countMathematicsTutorials + countDatascienceTutorials)} + '%'"></div>
+                     th:style="'width:' + ${countOtherTutorials * 100 / (countInformaticsTutorials + countMathematicsTutorials + countOtherTutorials)} + '%'"></div>
             </div>
             <div class="chart-legend">
                 <div class="legend-item">
