@@ -4,7 +4,7 @@ spring:
     name: demo2
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-#    url: "jdbc:mysql://localhost:3306/MyTutorProject9?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
+#    url: "jdbc:mysql://localhost:3306/MyTutorProject10?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
 #    username: root
 #    password: "!VarnaVarna35!"
     url: "jdbc:mysql://alv4v3hlsipxnujn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ctw1urnaqst0giuj"
@@ -22,11 +22,6 @@ spring:
     # Choose either MySQL 8 or MySQL 5 below
     # For MySQL 8
     database-platform: org.hibernate.dialect.MySQL8Dialect
-
-  error:
-    include-message: always
-    include-binding-errors: always
-    include-stacktrace: always
 
     #    #For MySQL 5
     #    #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -61,17 +56,3 @@ openai:
     url: "https://api.openai.com/v1/chat/completions"
   model: gpt-4o-mini-2024-07-18
 
-  #settings to show detailed error messages and avoid white-label error page
-  server:
-    error:
-      include-message: always
-      include-binding-errors: always
-      include-stacktrace: always
-      path: /error
-    servlet:
-      context-parameters:
-        # To disable the default white-label error page
-        spring.mvc.throw-exception-if-no-handler-found: true
-    web:
-      resources:
-        add-mappings: false
