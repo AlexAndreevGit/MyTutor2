@@ -1,6 +1,8 @@
 package com.myTutor2.service.impl;
 
 
+import com.MyTutor2.Exceptions.CategoryNotFoundException;
+import com.MyTutor2.Exceptions.UserNotFoundException;
 import com.MyTutor2.model.DTOs.TutorialAddDTO;
 import com.MyTutor2.model.DTOs.TutorialViewDTO;
 import com.MyTutor2.model.entity.Category;
@@ -76,7 +78,7 @@ public class TutorialsServiceImplTest {
 
 
     @Test
-    void testAddTutoringOffer() {
+    void testAddTutoringOffer() throws UserNotFoundException, CategoryNotFoundException {
 
         //----- Preparation -----
         //        TutoringOffer tutoringOffer = modelMapper.map(tutorialAddDTO, TutoringOffer.class);
