@@ -1,3 +1,5 @@
+// ChatBotAPI_6
+
 function performSearch() {
     const question = document.getElementById('searchInput').value.trim();
 
@@ -46,6 +48,7 @@ document.getElementById('searchButton').addEventListener('click', performSearch)
 
 // Add event listener for the Enter key press in the input field
 document.getElementById('searchInput').addEventListener('keypress', function(event) {
+
     // Check if the key pressed was "Enter"
     if (event.key === 'Enter') {
         // Prevent the default form submission behavior

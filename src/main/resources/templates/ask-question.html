@@ -1,3 +1,4 @@
+<!--ChatBotAPI_6-->
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -8,14 +9,16 @@
 <body>
 <header th:replace="fragments/commons::nav"></header>
 
-<div class="offers-header">
-    <h1 class="offers-title">
-        Ask TutorBot
-    </h1>
-    <p class="offers-subtitle">Ask the TutorBot any question!</p>
-</div>
+
 
 <main class="container py-4">
+    <div class="offers-header">
+        <h1 class="offers-title">
+            Ask TutorBot
+        </h1>
+        <p class="offers-subtitle">Ask the TutorBot any question!</p>
+    </div>
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="form-group">
@@ -38,6 +41,6 @@
 
 <script type="text/javascript" th:src="@{/scripts/ask-question.js}"></script>
 
-<!--<footer th:replace="fragments/commons::footer"></footer>-->
+
 </body>
 </html>
