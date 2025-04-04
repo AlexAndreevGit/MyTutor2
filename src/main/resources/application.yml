@@ -1,4 +1,3 @@
-
 #Set properties in Sprong
 spring:
   application:
@@ -23,23 +22,28 @@ spring:
     # Choose either MySQL 8 or MySQL 5 below
     # For MySQL 8
     database-platform: org.hibernate.dialect.MySQL8Dialect
-#
-#    #For MySQL 5
-#    #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
-#  The value update instructs Hibernate to automatically update the database schema when the application starts.
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
+
+    #    #For MySQL 5
+    #    #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+    #  The value update instructs Hibernate to automatically update the database schema when the application starts.
     hibernate:
       ddl-auto: update
 
-#  disables Hibernate's Open Session in View pattern to close the persistence context earlier, resulting in better resource management and enforcing best practices for data access.
+    #  disables Hibernate's Open Session in View pattern to close the persistence context earlier, resulting in better resource management and enforcing best practices for data access.
     open-in-view: false
 
-# is a developer-focused feature for better readability of SQL. SQL statements formated undereachother and not in a single line
+    # is a developer-focused feature for better readability of SQL. SQL statements formated undereachother and not in a single line
     properties:
       hibernate:
         format_sql: true
 
-#      ensures that data source initialization is delayed until the application context is fully prepared.
+    #      ensures that data source initialization is delayed until the application context is fully prepared.
     defer-datasource-initialization: true
 
   #ExchangeRates_Step_1 -> Settings/Configuration to connect to the REST API
