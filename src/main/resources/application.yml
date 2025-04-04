@@ -7,9 +7,9 @@ spring:
 #    url: "jdbc:mysql://localhost:3306/MyTutorProject9?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
 #    username: root
 #    password: "!VarnaVarna35!"
-    url: "jdbc:mysql://bbj31ma8tye2kagi.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/bonih6pxsr5dyoh0"
-    username: vuu4rfi4u60ilygw
-    password: xtcomuq5yv2epvzt
+    url: "jdbc:mysql://alv4v3hlsipxnujn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ctw1urnaqst0giuj"
+    username: le4t7y4rkbbli3j5
+    password: mqpuo3fcsf2nhrdy
   servlet:
     multipart:
       max-file-size: 1MB
