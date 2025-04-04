@@ -148,7 +148,7 @@ public class ExRateServiceImpl implements ExRateService {
     }
 
     @Override
-    public BigDecimal convert(String from, String to, BigDecimal amount) {
+    public BigDecimal convert(String from, String to, BigDecimal amount) throws ObjectNotFoundException {
 
         BigDecimal exchangeRate = findExRate(from, to)
                 .orElseThrow(() -> new ObjectNotFoundException("Conversion from " + from + " to " + to + " not possible.")); //If the exchange rate is not found throw an Exception

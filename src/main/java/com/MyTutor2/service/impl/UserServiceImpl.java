@@ -1,5 +1,6 @@
 package com.MyTutor2.service.impl;
 
+import com.MyTutor2.Exceptions.TutorialNotFoundException;
 import com.MyTutor2.model.DTOs.TutorialViewDTO;
 import com.MyTutor2.model.DTOs.UserRegisterDTO;
 import com.MyTutor2.model.entity.User;
@@ -70,7 +71,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional //is used to specify the scope of a single database transaction
     @Override
-    public void deleteUser(User logedInUser) {
+    public void deleteUser(User logedInUser) throws TutorialNotFoundException {
 
         //delete all tutoring offers associated with this user
         List<TutorialViewDTO> submittedByMeTutorialsAsView = tutorialsService.findAllTutoringOffersByUserId(logedInUser.getId());

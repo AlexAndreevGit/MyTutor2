@@ -1,6 +1,9 @@
 package com.MyTutor2.controller;
 
 
+import com.MyTutor2.Exceptions.CategoryNotFoundException;
+import com.MyTutor2.Exceptions.TutorialNotFoundException;
+import com.MyTutor2.Exceptions.UserNotFoundException;
 import com.MyTutor2.model.DTOs.TutorialAddDTO;
 import com.MyTutor2.model.DTOs.TutorialViewDTO;
 import com.MyTutor2.service.OpenAIService;
@@ -49,7 +52,7 @@ public class TutorialsController {
     public String createTutorial(@AuthenticationPrincipal UserDetails userDetails,  // source: Spring security
                                  @Valid TutorialAddDTO tutorialAddDTO,              // source: HTTP request
                                  BindingResult bindingResult,                       // source: Spring MVC
-                                 RedirectAttributes redirectAttributes) {           // source: Spring MVC
+                                 RedirectAttributes redirectAttributes) throws UserNotFoundException, CategoryNotFoundException {           // source: Spring MVC
 
 
         //BindingResult bindingResult - through bindingResult we can access the result(errors) from the validation
@@ -70,10 +73,12 @@ public class TutorialsController {
         return "redirect:/";
     }
 
+    // ChatBotAPI_1 -> In commons
+    // ChatBotAPI_2
     @PostMapping("/ask-question")
     public ResponseEntity<Map<String, Object>> askQuestion(@RequestBody Map<String, String> payload) {
-        Map<String, Object> response = new HashMap<>();
-        String query = payload.get("query");
+        Map<String, Object> response = new HashMap<>();  //create a HashMap to store ethe response
+        String query = payload.get("query"); //give me the value from payload which key is "query"
 
         String answer = openAIService.askQuestion(query);
 
@@ -83,10 +88,12 @@ public class TutorialsController {
         return ResponseEntity.ok(response);
     }
 
+    // ChatBotAPI_3
     @GetMapping("/ask-question")
     public String askQuestion() {
         return "ask-question";
     }
+
 
     @GetMapping("/info")
     public String informaticsOffers(@AuthenticationPrincipal UserDetails userDetails, Model model) {
@@ -134,7 +141,7 @@ public class TutorialsController {
 
     @GetMapping("/remove/{id}")
     // <a class="ml-3 text-danger" th:href="@{/tutoriels/remove/{id}(id = *{id})}">Remove</a>
-    public String remove(@PathVariable Long id) {
+    public String remove(@PathVariable Long id) throws TutorialNotFoundException {
 
         tutorialsService.removeOfferById(id);
 

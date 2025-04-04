@@ -1,5 +1,6 @@
 package com.MyTutor2.controller;
 
+import com.MyTutor2.Exceptions.TutorialNotFoundException;
 import com.MyTutor2.model.DTOs.TutorialViewDTO;
 import com.MyTutor2.model.DTOs.UserLogInDTO;
 import com.MyTutor2.model.DTOs.UserRegisterDTO;
@@ -137,7 +138,7 @@ public class UserController {
     @PostMapping("/delete-account")
     public String deleteAccount(@AuthenticationPrincipal UserDetails userDetails,
                                 HttpServletRequest request,    //is used to get the current user's request
-                                HttpServletResponse response){  //is used to get the current user's response
+                                HttpServletResponse response) throws TutorialNotFoundException {  //is used to get the current user's response
 
         User logedInUser= userRepository.findByUsername(userDetails.getUsername()).orElse(null);
 

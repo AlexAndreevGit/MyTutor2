@@ -1,6 +1,7 @@
 package com.MyTutor2.controller;
 
 
+import com.MyTutor2.Exceptions.ObjectNotFoundException;
 import com.MyTutor2.model.DTOs.CoversionResultDTO;
 import com.MyTutor2.service.ExRateService;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class CurrencyController {
     }
 
     @GetMapping("/api/convert")
-    public ResponseEntity<CoversionResultDTO> convert(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("amount") BigDecimal amount) {
+    public ResponseEntity<CoversionResultDTO> convert(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("amount") BigDecimal amount) throws ObjectNotFoundException {
 
         BigDecimal result = exRateService.convert(from, to, amount);
 

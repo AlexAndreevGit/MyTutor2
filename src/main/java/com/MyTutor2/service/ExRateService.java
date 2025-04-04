@@ -1,6 +1,7 @@
 package com.MyTutor2.service;
 
 
+import com.MyTutor2.Exceptions.ObjectNotFoundException;
 import com.MyTutor2.model.DTOs.ExRatesDTO;
 
 import java.math.BigDecimal;
@@ -17,5 +18,5 @@ public interface ExRateService {
 
     Optional<BigDecimal> findExRate(String from, String to);
 
-    BigDecimal convert(String from, String to, BigDecimal amount);
+    BigDecimal convert(String from, String to, BigDecimal amount) throws ObjectNotFoundException;
 }
