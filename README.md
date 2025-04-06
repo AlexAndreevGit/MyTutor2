@@ -24,7 +24,7 @@ MyTutor2 is built using modern technologies:
     - SQL database
 
 - **Frontend**
-    - HTML & CSS
+    - HTML, CSS & JavaScript
     - Thymeleaf template engine
     - Responsive design principles
 
