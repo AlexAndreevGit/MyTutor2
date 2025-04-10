@@ -61,8 +61,26 @@
 
 </main>
 
+<div id="message" class="form-container">
+    <p class="form-subtitle">The username and password are prepopulated for test and presentation purpose.</p>
+</div>
 
-<!--<footer th:replace="fragments/commons::footer"></footer>-->
+//TODO put the script in a separate JS file
+<script>
+    window.onload = function () {
+        var popup = document.getElementById("message");
+
+        setTimeout(function () {
+            popup.style.display = "block"; // Show after 1 second
+
+            setTimeout(function () {
+                popup.style.display = "none"; // Hide after 3 more seconds
+            }, 5000);
+
+        }, 1000); // Wait 1 second before showing
+    };
+</script>
+
 
 </body>
 </html>
