@@ -17,37 +17,33 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     //SpringSecurity_1 ->
-    //src\main\resources\static\images\Spring_SecurityFilterChain.png
-    //Creating a "SecurityFilterChain"
     //With HttpSecurity we can easily create security filer chain. It is a builder for the class "SecurityFilterChain"
-    //With the fluent-API it is convenient to make the configuration
-
-    @Bean    //Expose the "SecurityFilterChain" as a bean. Spring takes it and puts it as a filter in the filter chain
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.authorizeHttpRequests(                    //Section 1 -> .authorizeHttpRequests()   setup which URL-s are available for which user
-                    authorizeRequests ->                                //with the lambda we explain what is accessible and what not
+        return httpSecurity.authorizeHttpRequests(
+                    authorizeRequests ->
                             authorizeRequests
-                                    .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() //all static resources(CSS,images) are accessible for everyone
-                                    .requestMatchers("/","/home", "/about-us", "users/login","/users/login-error", "users/register","/api/convert").permitAll()          //accessible for all users
-                                    .requestMatchers("/admin/**").hasRole("ADMIN") // Restrict access to /admin/** URLs only for users with the role ARMIN
-                                    .anyRequest().authenticated()       //for all other requests, we need an authenticated user.
+                                    .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                    .requestMatchers("/","/home", "/about-us", "users/login","/users/login-error", "users/register","/api/convert").permitAll()
+                                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                                    .anyRequest().authenticated()
                 )
-                .formLogin(formLogin ->                               //Section 2 -> .formLogin()
+                .formLogin(formLogin ->
                         formLogin
                                 .loginPage("/users/login")     //the login page should be our custom login page
                                 .usernameParameter("username") //The name of the username parameter. Same as in the login.html
-                                .passwordParameter("password") //The password of the user parameter. Same as in the login.html
-                                .defaultSuccessUrl("/home",true)  // URL if the login is successful
+                                .passwordParameter("password")
+                                .defaultSuccessUrl("/home",true)
                                 .failureUrl("/users/login-error")
                 )
-                .logout(                                                //Section 3 -> .logout()
+                .logout(
                         logout ->
-                                logout.logoutUrl("/users/logout")       // If we want to logout then we need to create a post request to this URL. POST because of the CSRF token. The CSRF token provide protection.
-                                        .logoutSuccessUrl("/")          // where to go after successful logout
-                                        .invalidateHttpSession(true)    //invalidate session after that
+                                logout.logoutUrl("/users/logout")       // If we want to logout then we need to create a post request to this URL.
+                                        .logoutSuccessUrl("/")
+                                        .invalidateHttpSession(true)
 
                 )
-                .build();                                               //Section 4 -> call the build-method at the end
+                .build();
     }
 
     //SpringSecurity_4 -> we are exposing "UserDetailsService" as a bean, so it is managed by spring
