@@ -1,7 +1,7 @@
 package com.MyTutor2.controller;
 
 
-import com.MyTutor2.Exceptions.ObjectNotFoundException;
+import com.MyTutor2.exceptions.ObjectNotFoundException;
 import com.MyTutor2.model.DTOs.CoversionResultDTO;
 import com.MyTutor2.service.ExRateService;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.math.BigDecimal;
 
 //ExchangeRates_Step_10
-@RestController   //@RestController means that the object that is returned will be converted to JSON object by spring
+@RestController
 public class CurrencyController {
 
     private final ExRateService exRateService;

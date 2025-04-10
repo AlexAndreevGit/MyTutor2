@@ -4,22 +4,19 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-//ExchangeRates_Step_4 Create the class ForexApiConfig to encapsulate the properties from the application.yaml in an object that we can use
-
-//POJO for the configuration. Object with fields, getters and setters
-//the fields should be with the same names as in the application.yaml
+//ExchangeRates_Step_4
 @Configuration
-@ConfigurationProperties(prefix = "forex.api") // In the prefix we put forex.api from the application.yaml. Then we put "key", "url" and "base" as fields and the values form the .yaml will be injected in the fields
+@ConfigurationProperties(prefix = "forex.api")
 public class ForexApiConfig {
 
-    //@Value("${forex.api.key}")  plus only @Component on the class
+
     private String key;
 
     private String url;
 
     private String base;
 
-    //Getter and setters
+
     public String getKey() {
         return key;
     }
@@ -44,26 +41,24 @@ public class ForexApiConfig {
         this.base = base;
     }
 
-    @PostConstruct//Control if key, base and url are configured correctly otherwise the application will not start
-    public void checkConfiguration(){
+    @PostConstruct
+    public void checkConfiguration() {
 
-        verifyNotNullOrEmpty("key",key);
-        verifyNotNullOrEmpty("base",base);
-        verifyNotNullOrEmpty("url",url);
+        verifyNotNullOrEmpty("key", key);
+        verifyNotNullOrEmpty("base", base);
+        verifyNotNullOrEmpty("url", url);
 
-        if(!"USD".equals(base)){
+        if (!"USD".equals(base)) {
 
-            //Exception
             throw new IllegalStateException(" Sorry but the free API does not support base currencies different then USD.");
 
         }
 
     }
 
-    private static void verifyNotNullOrEmpty(String name, String value){
-        if(value==null || value.isBlank()){
+    private static void verifyNotNullOrEmpty(String name, String value) {
+        if (value == null || value.isBlank()) {
 
-            //Exception
             throw new IllegalArgumentException("Property" + name + "cant be empty");
         }
     }

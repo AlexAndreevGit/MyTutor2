@@ -22,9 +22,6 @@ public class Category extends BaseEntity {
     public Category() {
     }
 
-    //    public CategoryNameEnum getName() {
-//        return name;
-//    }
 
     public void setName(CategoryNameEnum name) {
         this.name = name;

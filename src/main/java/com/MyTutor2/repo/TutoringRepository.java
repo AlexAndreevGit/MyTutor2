@@ -1,8 +1,6 @@
 package com.MyTutor2.repo;
 
-import com.MyTutor2.model.DTOs.TutorialViewDTO;
 import com.MyTutor2.model.entity.TutoringOffer;
-import com.MyTutor2.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

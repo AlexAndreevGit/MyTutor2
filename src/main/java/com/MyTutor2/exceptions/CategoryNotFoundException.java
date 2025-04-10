@@ -1,4 +1,4 @@
-package com.MyTutor2.Exceptions;
+package com.MyTutor2.exceptions;
 
 import com.MyTutor2.model.enums.CategoryNameEnum;
 

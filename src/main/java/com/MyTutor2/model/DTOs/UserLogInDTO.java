@@ -14,12 +14,10 @@ public class UserLogInDTO {
     @Size(min=2, max=40)
     private String password;
 
-    //Constructor
     public UserLogInDTO() {
 
     }
 
-    //Getters and setters
     public String getUsername() {
         return username;
     }

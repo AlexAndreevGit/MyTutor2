@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 
-//CommandLineRunner is coming from Spring.
+//The commandLineRunner is coming from Spring.
 //It contains only one method -> run()
 
 @Component
@@ -21,7 +21,7 @@ public class DataBaseInit implements CommandLineRunner {
     }
 
 
-    //the run() method is triggered after Spring Boot has started. We use it for the initialisation of the database.
+    //the run() method is triggered after Spring Boot has started.
     @Override
     public void run(String... args) throws Exception {
 

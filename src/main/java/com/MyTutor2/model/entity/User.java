@@ -30,7 +30,7 @@ public class User extends BaseEntity {
     )
     private List<UserRoleEntity> roles = new ArrayList<>();
 
-    //Constructor
+
     public User() {
 
     }

@@ -14,14 +14,12 @@ import java.math.BigDecimal;
 @Table(name= "ex_rates")
 public class ExRateEntity extends BaseEntity{
 
-    //@NotEmpty
     @Column(unique = true)
     private String currency;
 
     @Positive
     @NotNull
     private BigDecimal rate;
-
 
 
     public String getCurrency() {

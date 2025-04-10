@@ -1,7 +1,7 @@
 package com.MyTutor2.service;
 
 
-import com.MyTutor2.Exceptions.ObjectNotFoundException;
+import com.MyTutor2.exceptions.ObjectNotFoundException;
 import com.MyTutor2.model.DTOs.ExRatesDTO;
 
 import java.math.BigDecimal;

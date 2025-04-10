@@ -1,4 +1,4 @@
-package com.MyTutor2.Exceptions;
+package com.MyTutor2.exceptions;
 
 public class TutorialNotFoundException extends Exception {
 

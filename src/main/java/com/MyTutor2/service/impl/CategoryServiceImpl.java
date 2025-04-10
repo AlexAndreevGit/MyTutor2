@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    //we are working with th interface to acheave higher level of abstraction
-    private CategoryRepository categoryRepository;       //TODO dont work with the abstraction but with the class
+    private CategoryRepository categoryRepository;
 
     public CategoryServiceImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;

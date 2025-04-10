@@ -63,7 +63,6 @@ public class TutoringOffer extends BaseEntity{
         this.price = price;
     }
 
-
     public Category getCategory() {
         return category;
     }

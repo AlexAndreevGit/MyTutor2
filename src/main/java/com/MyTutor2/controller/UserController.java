@@ -1,6 +1,6 @@
 package com.MyTutor2.controller;
 
-import com.MyTutor2.Exceptions.TutorialNotFoundException;
+import com.MyTutor2.exceptions.TutorialNotFoundException;
 import com.MyTutor2.model.DTOs.TutorialViewDTO;
 import com.MyTutor2.model.DTOs.UserLogInDTO;
 import com.MyTutor2.model.DTOs.UserRegisterDTO;

@@ -24,7 +24,7 @@ public class HomeController {
     }
 
 
-    @GetMapping(value={"/home", "/"})   //the statistics method should handle GET requests from both /home and /
+    @GetMapping(value={"/home", "/"})
     public String home(Model model) {
 
         List<TutoringOffer> countInformaticsTutorials = tutoringRepository.findAllByCategoryId(2L);
@@ -42,7 +42,7 @@ public class HomeController {
 
         model.addAttribute("countOtherTutorials", countOtherTutorials.size());
 
-        model.addAttribute("countAllUsers", countAllUsers.size()-1); // minus 1 because we don't count the admin as a user
+        model.addAttribute("countAllUsers", countAllUsers.size()-1);
 
         return "home";
     }

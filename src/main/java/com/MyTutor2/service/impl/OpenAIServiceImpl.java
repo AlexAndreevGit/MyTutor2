@@ -16,14 +16,6 @@ import java.util.Map;
 @Service
 public class OpenAIServiceImpl implements OpenAIService {
 
-    //    @Value("${openai.api.key}")
-//    private String apiKey;
-//
-//    @Value("${openai.api.url}")
-//    private String apiUrl;
-//
-//    @Value("${openai.model}")
-//    private String model;
     private OpenAIAPIConfig openAIAPIConfig;
 
     private final RestClient.Builder restClientBuilder;
@@ -33,13 +25,6 @@ public class OpenAIServiceImpl implements OpenAIService {
         this.restClientBuilder = restClientBuilder;
         this.openAIAPIConfig = openAIAPIConfig;
     }
-
-//    @PostConstruct
-//    public void init() {
-//        this.restClient = restClientBuilder
-//                .baseUrl(apiUrl) // we build this restClient with this URL. Each request will go exactly to this URL
-//                .build();
-//    }
 
 
     public String askQuestion(String question) {

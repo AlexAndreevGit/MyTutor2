@@ -1,8 +1,8 @@
 package com.MyTutor2.service;
 
-import com.MyTutor2.Exceptions.CategoryNotFoundException;
-import com.MyTutor2.Exceptions.TutorialNotFoundException;
-import com.MyTutor2.Exceptions.UserNotFoundException;
+import com.MyTutor2.exceptions.CategoryNotFoundException;
+import com.MyTutor2.exceptions.TutorialNotFoundException;
+import com.MyTutor2.exceptions.UserNotFoundException;
 import com.MyTutor2.model.DTOs.TutorialAddDTO;
 import com.MyTutor2.model.DTOs.TutorialViewDTO;
 

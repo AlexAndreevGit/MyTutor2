@@ -1,8 +1,8 @@
 package com.MyTutor2.service.impl;
 
-import com.MyTutor2.Exceptions.CategoryNotFoundException;
-import com.MyTutor2.Exceptions.TutorialNotFoundException;
-import com.MyTutor2.Exceptions.UserNotFoundException;
+import com.MyTutor2.exceptions.CategoryNotFoundException;
+import com.MyTutor2.exceptions.TutorialNotFoundException;
+import com.MyTutor2.exceptions.UserNotFoundException;
 import com.MyTutor2.model.DTOs.TutorialAddDTO;
 import com.MyTutor2.model.DTOs.TutorialViewDTO;
 import com.MyTutor2.model.entity.Category;
@@ -18,9 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -101,18 +99,6 @@ public class TutorialsServiceImpl implements TutorialsService {
     }
 
     private List<TutorialViewDTO> returnListOfOffersAsViewDTO(List<TutoringOffer> listOfOffers) {
-
-//        List<TutorialViewDTO> outputListOfDTOs = new ArrayList<>();
-//
-//        for (TutoringOffer currentTutoringOffer : listOfOffers) {
-//
-//            TutorialViewDTO tutorialViewDTO = modelMapper.map(currentTutoringOffer, TutorialViewDTO.class);
-//            tutorialViewDTO.setEmailOfTheTutor(currentTutoringOffer.getAddedBy().getEmail());
-//            outputListOfDTOs.add(tutorialViewDTO);
-//
-//        }
-//
-//        return outputListOfDTOs;
 
         return listOfOffers.stream()
                 .map(offer -> {

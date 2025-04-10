@@ -1,11 +1,5 @@
 package com.MyTutor2.model.DTOs;
 
-import com.MyTutor2.model.entity.Category;
-import com.MyTutor2.model.entity.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.Positive;
-
 public class TutorialViewDTO {
 
     private Long id;
@@ -16,9 +10,7 @@ public class TutorialViewDTO {
 
     private Double price;
 
-    //private User addedBy;
     private String emailOfTheTutor;
-
 
     public Long getId() {
         return id;

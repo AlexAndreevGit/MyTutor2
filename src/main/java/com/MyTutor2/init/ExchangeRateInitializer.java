@@ -6,9 +6,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 //ExchangeRates_Step_9 update the exchange rates by teh start of the application
-//We need the component annotation so spring knows what to do with it
-//CommandLineRunner is an interface from spring boot
-//The commondLineRunner ist started once when the application is started
 @Component
 public class ExchangeRateInitializer implements CommandLineRunner {
 
@@ -26,7 +23,6 @@ public class ExchangeRateInitializer implements CommandLineRunner {
         //if no initialised exchange rates then fetch the information through REST
         if (!exRateService.hasInitialisedExRates()){
 
-            //ExceptionHandling
             try {
                 exRateService.updateRates(exRateService.fetchExRates());
 

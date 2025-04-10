@@ -21,12 +21,10 @@ public class TutorialAddDTO {
     @NotNull
     private CategoryNameEnum category ;
 
-    //Constructor
     public TutorialAddDTO() {
 
     }
 
-    //Getters and setters
     public String getName() {
         return name;
     }

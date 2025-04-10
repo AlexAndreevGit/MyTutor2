@@ -1,7 +1,7 @@
 package com.MyTutor2.service.impl;
 
 
-import com.MyTutor2.Exceptions.ObjectNotFoundException;
+import com.MyTutor2.exceptions.ObjectNotFoundException;
 import com.MyTutor2.config.ForexApiConfig;
 import com.MyTutor2.model.DTOs.ExRatesDTO;
 import com.MyTutor2.model.entity.ExRateEntity;
@@ -24,7 +24,7 @@ import java.util.Optional;
 @Service
 public class ExRateServiceImpl implements ExRateService {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(ExRateServiceImpl.class);  //initialise a logger to log messages
+    private final Logger LOGGER = LoggerFactory.getLogger(ExRateServiceImpl.class);
 
     private final ExRateRepository exRateRepository;
     private final RestClient restClient;
@@ -45,7 +45,7 @@ public class ExRateServiceImpl implements ExRateService {
     @Override
     public ExRatesDTO fetchExRates() {
 
-        return restClient //with the help of the restClient we can send an HTTP request and get a response
+        return restClient
                 .get() //we want that the restClient make a GET request to the OpenExchangeRatesAPI
                 .uri(forexApiConfig.getUrl(), forexApiConfig.getKey()) //make the GET request to this url. The {app_id} will be replaced with the kay. Spring knows that it should replace everything between {...}.
                 .accept(MediaType.APPLICATION_JSON)// we tell to the website "OpenExchangeRates" that we want the response to be in a JSON format
@@ -59,9 +59,7 @@ public class ExRateServiceImpl implements ExRateService {
     public void updateRates(ExRatesDTO exRatesDTO) {    //in the praxis  exRateService.updateRates(exRateService.fetchExRates());
         LOGGER.info("Updating {} rates.", exRatesDTO.rates().size());  //  "Updating 169 rates."
 
-        //prove if the base is correct
         if (!forexApiConfig.getBase().equals(exRatesDTO.base())) {  // in the records we don't have getBase(). Instead we have .base()
-            //Exception
             throw new IllegalArgumentException("the exchange rates that should be updated are not based on " + forexApiConfig.getBase() + "but rather on" + exRatesDTO.base());
         }
 
@@ -85,22 +83,6 @@ public class ExRateServiceImpl implements ExRateService {
             exRateRepository.save(exRateEntity);
         }
 
-//        rates.forEach((currency, rate) ->
-//        {
-//            ExRateEntity exRateEntity = exRateRepository.findByCurrency(currency)   // Example -> we try to find  BGN
-//                    .orElseGet(() -> {                                              //If it doesn't exist in the DB, then create a new one
-//                                ExRateEntity exRateEntityNew = new ExRateEntity();
-//                                exRateEntityNew.setCurrency(currency);
-//                                return exRateEntityNew;
-//                            }
-//                    );
-//
-//            //update or set(if new one) the rate
-//            exRateEntity.setRate(rate);
-//
-//            exRateRepository.save(exRateEntity);
-//
-//        });
 
     }
 
@@ -151,7 +133,7 @@ public class ExRateServiceImpl implements ExRateService {
     public BigDecimal convert(String from, String to, BigDecimal amount) throws ObjectNotFoundException {
 
         BigDecimal exchangeRate = findExRate(from, to)
-                .orElseThrow(() -> new ObjectNotFoundException("Conversion from " + from + " to " + to + " not possible.")); //If the exchange rate is not found throw an Exception
+                .orElseThrow(() -> new ObjectNotFoundException("Conversion from " + from + " to " + to + " not possible."));
         return exchangeRate.multiply(amount);
 
     }
