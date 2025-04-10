@@ -1,5 +1,6 @@
 package com.MyTutor2.service.impl;
 
+import com.MyTutor2.config.OpenAIAPIConfig;
 import com.MyTutor2.service.OpenAIService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,20 +16,22 @@ import java.util.Map;
 @Service
 public class OpenAIServiceImpl implements OpenAIService {
 
-    @Value("${openai.api.key}")
-    private String apiKey;
-
-    @Value("${openai.api.url}")
-    private String apiUrl;
-
-    @Value("${openai.model}")
-    private String model;
+    //    @Value("${openai.api.key}")
+//    private String apiKey;
+//
+//    @Value("${openai.api.url}")
+//    private String apiUrl;
+//
+//    @Value("${openai.model}")
+//    private String model;
+    private OpenAIAPIConfig openAIAPIConfig;
 
     private final RestClient.Builder restClientBuilder;
     private RestClient restClient;
 
-    public OpenAIServiceImpl(RestClient.Builder restClientBuilder) {
+    public OpenAIServiceImpl(RestClient.Builder restClientBuilder, OpenAIAPIConfig openAIAPIConfig) {
         this.restClientBuilder = restClientBuilder;
+        this.openAIAPIConfig = openAIAPIConfig;
     }
 
 //    @PostConstruct
@@ -51,19 +54,19 @@ public class OpenAIServiceImpl implements OpenAIService {
         messageContent.put("content", prompt);
 
         Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("model", model); // give him the model that we want to use. They have multiple models
+        requestBody.put("model", openAIAPIConfig.getModel()); // give him the model that we want to use. They have multiple models
         requestBody.put("messages", List.of(messageContent));  //give him the whole chat history. In our case List of one message.
 
         try {
             this.restClient = restClientBuilder
-                    .baseUrl(apiUrl) // we build this restClient with this URL. Each request will go exactly to this URL
+                    .baseUrl(openAIAPIConfig.getApiUrl()) // we build this restClient with this URL. Each request will go exactly to this URL
                     .build();
 
             var response = restClient
                     .post() //create a post request to the URL
                     .contentType(MediaType.APPLICATION_JSON) // that what I send you is a JSON
                     // Authorization mean this user can use this endpoint
-                    .header("Authorization", "Bearer " + apiKey)
+                    .header("Authorization", "Bearer " + openAIAPIConfig.getApiKey())
                     //the body that we are sending
                     .body(requestBody) //the body is the data that I'm sending and teh header is meta-data
                     .retrieve()
