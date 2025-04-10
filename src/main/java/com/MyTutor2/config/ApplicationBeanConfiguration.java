@@ -14,7 +14,7 @@ public class ApplicationBeanConfiguration {
         return new ModelMapper();
     }
 
-    //SpringSecurity_3 Add PasswordEncoder
+    //SpringSecurity_3
     @Bean
     public PasswordEncoder passwordEncoder() {
         return Pbkdf2PasswordEncoder
