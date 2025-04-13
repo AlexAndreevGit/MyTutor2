@@ -10,33 +10,40 @@
 <header th:replace="fragments/commons::nav"></header>
 
 
-
 <main class="container py-4">
-    <div class="offers-header">
-        <h1 class="offers-title">
+
+    <div class="general-header">
+        <h1 class="main-title">
             Ask TutorBot
         </h1>
-        <p class="offers-subtitle">Ask the TutorBot any question!</p>
+        <p class="general-subtitle">Ask the TutorBot any question!</p>
     </div>
 
     <div class="row justify-content-center">
+
         <div class="col-md-8">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Enter Your Question">
-                    <div class="input-group-append">
-                        <button id="searchButton" class="btn btn-primary">Ask</button>
-                    </div>
-                </div>
+
+            <div class="form-group-ask-question" >
+
+                <input type="text" class="form-control" style="margin-right: 5px" id="searchInput"
+                       placeholder="Enter Your Question">
+                <button id="searchButton" class="btn-submit">Ask</button>
+
             </div>
-            <div id="resultsOuterContainer" class="offers-list-container" style="display: none">
+
+
+            <div id="resultsOuterContainer" class="answer-chatbot-container" >
+
                 <div class="offers-list">
                     <div id="searchResults"></div>
-                    <div id="resultsContainer"></div>
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </main>
 
 <script type="text/javascript" th:src="@{/scripts/ask-question.js}"></script>

@@ -73,16 +73,15 @@ public class TutorialsController {
         return "redirect:/";
     }
 
+
     // ChatBotAPI_1 -> In commons
     // ChatBotAPI_2
     @PostMapping("/ask-question")
-    public ResponseEntity<Map<String, Object>> askQuestion(@RequestBody Map<String, String> payload) {
-        Map<String, Object> response = new HashMap<>();  //create a HashMap to store ethe response
-        String query = payload.get("query"); //give me the value from payload which key is "query"
+    public ResponseEntity<Map<String, Object>> askQuestion(@RequestBody Map<String, String> payload) { //
+        Map<String, Object> response = new HashMap<>();
+        String query = payload.get("query");
 
         String answer = openAIService.askQuestion(query);
-
-        response.put("success", true);
         response.put("answer", answer);
 
         return ResponseEntity.ok(response);
