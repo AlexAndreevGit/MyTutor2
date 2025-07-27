@@ -77,7 +77,7 @@ public class TutorialsController {
     // ChatBotAPI_1 -> In commons
     // ChatBotAPI_2
     @PostMapping("/ask-question")
-    public ResponseEntity<Map<String, Object>> askQuestion(@RequestBody Map<String, String> payload) { //
+    public ResponseEntity<Map<String, Object>> askQuestion(@RequestBody Map<String, String> payload) {
         Map<String, Object> response = new HashMap<>();
         String query = payload.get("query");
 
